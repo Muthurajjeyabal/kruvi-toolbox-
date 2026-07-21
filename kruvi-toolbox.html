@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kruvi Toolbox — 50+ Free Online Tools | PDF, Image, Text, Calculators</title>
+<meta name="description" content="50+ free online tools — PDF, Image, Text, Calculators, Unit Converters. No signup, no install. Browser-லேயே process ஆகும்.">
+<meta name="keywords" content="free online tools, pdf tools, image compressor, qr code generator, word counter, bmi calculator, emi calculator, gst calculator, currency converter, password generator">
+<meta name="author" content="Kruvi Toolbox">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Kruvi Toolbox — 50+ Free Online Tools">
+<meta property="og:description" content="PDF, Image, Text, Calculators — Browser-லேயே வேலை செய்யும். No signup needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kruvitools.com">
+<meta property="og:image" content="https://kruvitools.com/og-image.jpg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kruvi Toolbox — 50+ Free Online Tools">
+<meta name="twitter:description" content="50+ free utilities. PDF, Image, Text, Calculators. No install.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Kruvi Toolbox",
+  "url": "https://kruvitools.com",
+  "description": "50+ free online tools for PDF, Image, Text, and Calculators",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://kruvitools.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- Google AdSense (REPLACE with your ca-pub ID) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
+
+<!-- Google Analytics (REPLACE with your GA ID) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_GA_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YOUR_GA_ID');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<style>
+:root{
+  --bg:#F6F4EE; --panel:#FFFFFF; --line:#3C6E9C; --accent:#E8A33D;
+  --text:#1B2430; --muted:#6B7686; --border:#E1DDD1; --grid:rgba(60,110,156,0.08);
+  --mono:'JetBrains Mono',monospace; --disp:'Space Grotesk',sans-serif; --body:'Inter',sans-serif;
+  --radius:10px; --pro:#7C3AED; --success:#22C55E;
+}
+[data-theme="dark"]{
+  --bg:#0E1A2B; --panel:#132540; --line:#5B9BD5; --accent:#E8A33D;
+  --text:#E8ECF1; --muted:#8798AC; --border:#213652; --grid:rgba(91,155,213,0.07);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  font-family:var(--body); background:var(--bg); color:var(--text);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:32px 32px;
+  min-height:100vh; transition:background .25s, color .25s;
+}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 20px;}
+
+/* ===== ADS ===== */
+.ad-slot{
+  background:var(--panel); border:1px dashed var(--border); border-radius:var(--radius);
+  text-align:center; color:var(--muted); font-size:.75rem; font-family:var(--mono);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.ad-hero{min-height:90px; margin:20px 0;}
+.ad-sidebar{min-height:250px; margin:16px 0;}
+.ad-inline{min-height:90px; margin:24px 0;}
+.ad-footer{min-height:90px; margin:30px 0 0;}
+.ad-label{font-size:.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; margin-bottom:4px;}
+
+/* ===== PREMIUM BADGE ===== */
+.pro-badge{
+  display:inline-flex; align-items:center; gap:4px;
+  background:linear-gradient(135deg, var(--pro), #A78BFA);
+  color:#fff; font-size:.65rem; font-weight:600; font-family:var(--mono);
+  padding:2px 8px; border-radius:999px; margin-left:6px;
+}
+.premium-gate{
+  background:linear-gradient(135deg, rgba(124,58,237,0.08), rgba(167,139,250,0.08));
+  border:1px solid var(--pro); border-radius:12px; padding:24px; text-align:center; margin:16px 0;
+}
+.premium-gate h3{font-family:var(--disp); font-size:1.1rem; margin-bottom:8px; color:var(--pro);}
+.premium-gate p{font-size:.85rem; color:var(--muted); margin-bottom:14px;}
+.premium-btn{
+  background:linear-gradient(135deg, var(--pro), #8B5CF6); color:#fff;
+  border:none; padding:10px 24px; border-radius:8px; font-weight:600; font-size:.9rem;
+  display:inline-flex; align-items:center; gap:6px;
+}
+
+/* ===== AFFILIATE BANNER ===== */
+.affiliate-banner{
+  background:linear-gradient(135deg, var(--line), #2A5A8A);
+  color:#fff; border-radius:12px; padding:16px 20px; margin:20px 0;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+}
+.affiliate-banner p{font-size:.85rem; opacity:.9;}
+.affiliate-banner a{
+  background:#fff; color:var(--line); padding:8px 16px; border-radius:6px;
+  font-weight:600; font-size:.8rem; white-space:nowrap;
+}
+
+/* ===== EMAIL CAPTURE ===== */
+.email-capture{
+  background:var(--panel); border:1px solid var(--border); border-radius:12px;
+  padding:20px; margin:20px 0; text-align:center;
+}
+.email-capture h4{font-family:var(--disp); font-size:1rem; margin-bottom:6px;}
+.email-capture p{font-size:.8rem; color:var(--muted); margin-bottom:12px;}
+.email-capture .row{display:flex; gap:8px; max-width:400px; margin:0 auto;}
+.email-capture input{
+  flex:1; padding:10px 14px; border-radius:8px; border:1px solid var(--border);
+  background:var(--bg); color:var(--text); font-size:.85rem;
+}
+
+/* ===== USAGE LIMIT ===== */
+.usage-bar{
+  background:var(--bg); border:1px solid var(--border); border-radius:8px;
+  padding:10px 14px; margin-bottom:14px; display:flex; align-items:center; gap:10px;
+  font-size:.78rem; color:var(--muted); font-family:var(--mono);
+}
+.usage-bar .bar{flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden;}
+.usage-bar .bar-fill{height:100%; background:var(--line); border-radius:3px; transition:width .3s;}
+
+/* Header */
+header{border-bottom:1px solid var(--border); background:var(--panel); position:sticky; top:0; z-index:50;}
+.header-inner{display:flex; align-items:center; gap:20px; padding:14px 20px; max-width:1200px; margin:0 auto;}
+.logo{font-family:var(--disp); font-weight:700; font-size:1.3rem; display:flex; align-items:center; gap:8px; cursor:pointer;}
+.logo .mark{width:28px; height:28px; border:2px solid var(--line); border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:.7rem; color:var(--line); font-weight:600;}
+.searchbar{flex:1; max-width:420px; position:relative;}
+.searchbar input{
+  width:100%; padding:9px 14px 9px 34px; border-radius:999px; border:1px solid var(--border);
+  background:var(--bg); color:var(--text); font-size:.9rem; font-family:var(--body);
+}
+.searchbar::before{content:"⌕"; position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:1rem;}
+.header-actions{display:flex; align-items:center; gap:10px; margin-left:auto;}
+.icon-btn{width:36px; height:36px; border-radius:999px; border:1px solid var(--border); background:var(--bg); color:var(--text); display:flex; align-items:center; justify-content:center; font-size:1.05rem;}
+.pro-btn{
+  background:linear-gradient(135deg, var(--pro), #8B5CF6); color:#fff;
+  border:none; padding:8px 16px; border-radius:999px; font-weight:600; font-size:.8rem;
+  display:flex; align-items:center; gap:4px;
+}
+
+/* Hero */
+.hero{padding:56px 0 36px; text-align:left;}
+.eyebrow{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; color:var(--line); text-transform:uppercase; margin-bottom:14px;}
+.hero h1{font-family:var(--disp); font-size:clamp(2rem,5vw,3.4rem); font-weight:700; line-height:1.05; max-width:760px;}
+.hero h1 span{color:var(--line);}
+.hero p{margin-top:16px; color:var(--muted); max-width:560px; font-size:1.02rem; line-height:1.6;}
+.hero-stats{display:flex; gap:24px; margin-top:20px; flex-wrap:wrap;}
+.hero-stat{display:flex; align-items:center; gap:6px; font-size:.8rem; color:var(--muted); font-family:var(--mono);}
+.hero-stat b{color:var(--line); font-size:1rem;}
+
+/* Layout */
+.layout{display:grid; grid-template-columns:220px 1fr; gap:28px; padding-bottom:60px;}
+@media(max-width:820px){.layout{grid-template-columns:1fr;}}
+.sidebar{position:sticky; top:70px; align-self:start;}
+.sidebar h4{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:10px;}
+.cat-list{display:flex; flex-direction:column; gap:2px;}
+.cat-item{padding:9px 12px; border-radius:8px; font-size:.9rem; color:var(--text); display:flex; justify-content:space-between; align-items:center; cursor:pointer;}
+.cat-item:hover{background:var(--panel);}
+.cat-item.active{background:var(--line); color:#fff;}
+.cat-item span.count{font-family:var(--mono); font-size:.72rem; opacity:.7;}
+@media(max-width:820px){.sidebar{position:static;} .cat-list{flex-direction:row; flex-wrap:wrap;}}
+
+.section-title{font-family:var(--disp); font-size:1.15rem; font-weight:600; margin:26px 0 14px; display:flex; align-items:center; gap:10px;}
+.section-title::after{content:""; flex:1; height:1px; background:var(--border);}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px;}
+.card{
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  padding:16px; display:flex; flex-direction:column; gap:8px; transition:transform .15s, border-color .15s; cursor:pointer; position:relative;
+}
+.card:hover{transform:translateY(-2px); border-color:var(--line);}
+.card .top{display:flex; justify-content:space-between; align-items:flex-start;}
+.card .icon{font-size:1.4rem;}
+.card .code{font-family:var(--mono); font-size:.68rem; color:var(--muted);}
+.card .name{font-family:var(--disp); font-weight:600; font-size:.98rem;}
+.card .desc{font-size:.78rem; color:var(--muted); line-height:1.4;}
+
+/* Tool page */
+.tool-header{display:flex; align-items:center; gap:14px; padding:30px 0 10px;}
+.back-btn{font-family:var(--mono); font-size:.8rem; color:var(--line); border:1px solid var(--border); padding:6px 12px; border-radius:8px; background:transparent;}
+.tool-title{font-family:var(--disp); font-size:1.6rem; font-weight:700;}
+.tool-panel{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:26px; margin-top:16px;}
+.field{margin-bottom:16px;}
+.field label{display:block; font-size:.8rem; color:var(--muted); margin-bottom:6px; font-family:var(--mono);}
+.field input[type=text], .field input[type=number], .field input[type=date], .field select, .field textarea{
+  width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:.92rem; font-family:var(--body);
+}
+.field textarea{min-height:140px; font-family:var(--mono); resize:vertical;}
+.row{display:flex; gap:14px; flex-wrap:wrap;}
+.row > .field{flex:1; min-width:150px;}
+.btn{
+  background:var(--line); color:#fff; border:none; padding:11px 20px; border-radius:8px; font-weight:600; font-size:.9rem;
+}
+.btn.secondary{background:transparent; border:1px solid var(--border); color:var(--text);}
+.btn.amber{background:var(--accent); color:#241a00;}
+.output-box{
+  margin-top:16px; background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:14px;
+  font-family:var(--mono); font-size:.85rem; white-space:pre-wrap; word-break:break-all; min-height:44px;
+}
+.stat-row{display:flex; gap:22px; flex-wrap:wrap; margin-top:14px;}
+.stat{background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 18px; text-align:center;}
+.stat b{display:block; font-family:var(--disp); font-size:1.4rem;}
+.stat span{font-size:.7rem; color:var(--muted); font-family:var(--mono); text-transform:uppercase;}
+.copy-btn{font-family:var(--mono); font-size:.72rem; color:var(--line); border:1px solid var(--line); padding:5px 10px; border-radius:6px; margin-top:8px; background:transparent;}
+.hint{font-size:.76rem; color:var(--muted); margin-top:8px; line-height:1.5;}
+.pill{display:inline-block; font-family:var(--mono); font-size:.65rem; padding:3px 8px; border-radius:999px; border:1px solid var(--accent); color:var(--accent); margin-left:8px;}
+input[type=file]{width:100%; padding:10px; border:1px dashed var(--border); border-radius:8px; background:var(--bg); font-size:.85rem;}
+.preview-img{max-width:100%; border-radius:8px; margin-top:10px; border:1px solid var(--border);}
+.color-swatch{width:100%; height:70px; border-radius:8px; border:1px solid var(--border); margin-top:10px;}
+
+/* Social share */
+.social-share{display:flex; gap:8px; margin-top:16px;}
+.social-share button{
+  padding:6px 12px; border-radius:6px; border:1px solid var(--border); background:var(--bg);
+  font-size:.75rem; color:var(--muted); cursor:pointer;
+}
+
+/* Footer */
+footer{border-top:1px solid var(--border); padding:30px 0; margin-top:40px; text-align:center; color:var(--muted); font-size:.8rem;}
+.empty{color:var(--muted); font-size:.9rem; padding:30px 0; text-align:center;}
+.file-list{font-size:.8rem; color:var(--muted); margin-top:8px;}
+
+/* Toast notification */
+.toast{
+  position:fixed; bottom:20px; right:20px; background:var(--line); color:#fff;
+  padding:12px 20px; border-radius:8px; font-size:.85rem; z-index:100;
+  transform:translateY(100px); opacity:0; transition:all .3s;
+}
+.toast.show{transform:translateY(0); opacity:1;}
+</style>
+</head>
+<body data-theme="light">
+
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="goHome()"><span class="mark">KT</span> Kruvi Toolbox</div>
+    <div class="searchbar"><input id="searchInput" type="text" placeholder="Tool தேடுங்கள்... (e.g. QR, BMI, PDF)" oninput="renderHome()"></div>
+    <div class="header-actions">
+      <button class="pro-btn" onclick="showPremium()">💎 Pro</button>
+      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- AdSense: Hero Banner -->
+  <div class="ad-slot ad-hero">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_PUBLISHER_ID" data-ad-slot="HERO_AD_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div id="heroBlock" class="hero">
+    <div class="eyebrow">50+ Free Online Utilities</div>
+    <h1>ஒரே இடத்தில் <span>எல்லா Tools</span>.<br>Sign-up வேண்டாம், Install வேண்டாம்.</h1>
+    <p>PDF, Image, Text, Calculator, Unit Converter tools — browser-லேயே வேலை செய்யும், உங்க files server-க்கு போகாது.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><b>50+</b> Tools</div>
+      <div class="hero-stat"><b>0</b> Sign-up</div>
+      <div class="hero-stat"><b>100%</b> Free</div>
+      <div class="hero-stat"><b>🔒</b> Private</div>
+    </div>
+  </div>
+
+  <!-- Affiliate Banner: Hosting -->
+  <div class="affiliate-banner" id="affiliateBanner">
+    <p>🚀 <b>Website வேண்டுமா?</b> Hostinger-ல் ₹79/month-ல் start செய்யுங்கள் — 1-click WordPress + Free SSL</p>
+    <a href="https://hostinger.in?REF=YOUR_AFFILIATE_ID" target="_blank" rel="nofollow sponsored">Get Hosting →</a>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h4>Categories</h4>
+      <div class="cat-list" id="catList"></div>
+      
+      <!-- AdSense: Sidebar -->
+      <div class="ad-slot ad-sidebar">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_PUBLISHER_ID" data-ad-slot="SIDEBAR_AD_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <!-- Email Capture -->
+      <div class="email-capture">
+        <h4>📧 Weekly Tips</h4>
+        <p>New tools & tricks straight to your inbox</p>
+        <div class="row">
+          <input type="email" id="emailInput" placeholder="your@email.com">
+          <button class="btn" onclick="subscribeEmail()">Join</button>
+        </div>
+      </div>
+    </aside>
+    <main id="mainArea"></main>
+  </div>
+
+  <!-- AdSense: Inline Content -->
+  <div class="ad-slot ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_PUBLISHER_ID" data-ad-slot="INLINE_AD_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- AdSense: Footer -->
+  <div class="ad-slot ad-footer">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_PUBLISHER_ID" data-ad-slot="FOOTER_AD_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
+<footer>
+  <p><b>Kruvi Toolbox</b> — Client-side tools. Data உங்க browser-லேயே process ஆகும்.</p>
+  <p style="margin-top:8px; font-size:.7rem;">
+    <a href="#/privacy">Privacy</a> · <a href="#/terms">Terms</a> · <a href="#/contact">Contact</a> · 
+    <a href="https://twitter.com/kruvitools" target="_blank">Twitter</a> · 
+    <a href="https://github.com/kruvitools" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------- DATA ---------------- */
+const CATEGORIES = [
+  {id:'all', name:'அனைத்தும்', icon:'✦'},
+  {id:'text', name:'Text Tools', icon:'📝'},
+  {id:'calc', name:'Calculators', icon:'🧮'},
+  {id:'convert', name:'Unit Converters', icon:'🔁'},
+  {id:'image', name:'Image Tools', icon:'🖼️'},
+  {id:'pdf', name:'PDF Tools', icon:'📄'},
+];
+
+const TOOLS = [
+  {id:'word-counter', cat:'text', name:'Word Counter', icon:'🔤', desc:'Words, characters, sentences count'},
+  {id:'char-counter', cat:'text', name:'Character Counter', icon:'🔢', desc:'Character & byte count'},
+  {id:'case-converter', cat:'text', name:'Text Case Converter', icon:'Aa', desc:'UPPER, lower, Title, Sentence'},
+  {id:'lorem-ipsum', cat:'text', name:'Lorem Ipsum Generator', icon:'¶', desc:'Dummy paragraphs உருவாக்கவும்'},
+  {id:'url-encode', cat:'text', name:'URL Encoder/Decoder', icon:'🔗', desc:'encodeURIComponent tool'},
+  {id:'base64', cat:'text', name:'Base64 Encoder/Decoder', icon:'⌗', desc:'Text ⇄ Base64'},
+  {id:'json-format', cat:'text', name:'JSON Formatter', icon:'{ }', desc:'Beautify/minify JSON'},
+  {id:'uuid', cat:'text', name:'UUID Generator', icon:'🆔', desc:'Random UUID v4'},
+  {id:'password-gen', cat:'text', name:'Password Generator', icon:'🔑', desc:'Strong random passwords'},
+  {id:'random-number', cat:'text', name:'Random Number Generator', icon:'🎲', desc:'Range-based random number'},
+  {id:'timestamp', cat:'text', name:'Timestamp Converter', icon:'⏱️', desc:'Unix timestamp ⇄ date'},
+  {id:'qr-code', cat:'text', name:'QR Code Generator', icon:'▦', desc:'Text/URL to QR code'},
+  {id:'color-picker', cat:'text', name:'Color Picker', icon:'🎨', desc:'HEX / RGB picker & preview'},
+
+  {id:'age-calc', cat:'calc', name:'Age Calculator', icon:'🎂', desc:'Birth date-லிருந்து வயது'},
+  {id:'bmi-calc', cat:'calc', name:'BMI Calculator', icon:'⚖️', desc:'Body Mass Index'},
+  {id:'emi-calc', cat:'calc', name:'EMI Calculator', icon:'🏦', desc:'Loan EMI கணக்கீடு'},
+  {id:'gst-calc', cat:'calc', name:'GST Calculator', icon:'🧾', desc:'GST add/remove'},
+  {id:'percentage-calc', cat:'calc', name:'Percentage Calculator', icon:'%', desc:'Percentage கணக்கீடுகள்'},
+
+  {id:'currency-convert', cat:'convert', name:'Currency Converter', icon:'💱', desc:'Approx rates (live அல்ல)'},
+  {id:'length-convert', cat:'convert', name:'Length Converter', icon:'📏', desc:'m, km, ft, inch, mile'},
+  {id:'weight-convert', cat:'convert', name:'Weight Converter', icon:'⚙️', desc:'kg, g, lb, oz'},
+  {id:'temp-convert', cat:'convert', name:'Temperature Converter', icon:'🌡️', desc:'°C ⇄ °F ⇄ K'},
+
+  {id:'img-compress', cat:'image', name:'Image Compressor', icon:'🗜️', desc:'Quality குறைச்சு size reduce'},
+  {id:'img-resize', cat:'image', name:'Image Resizer', icon:'⤢', desc:'Width/height resize'},
+  {id:'img-convert', cat:'image', name:'Image Format Converter', icon:'🔄', desc:'PNG ⇄ JPG ⇄ WEBP'},
+  {id:'img-crop', cat:'image', name:'Image to Base64', icon:'🖼️', desc:'Image → Base64 string'},
+
+  {id:'img-to-pdf', cat:'pdf', name:'Image to PDF', icon:'🖨️', desc:'Images-ஐ PDF ஆக்கவும்'},
+  {id:'pdf-merge', cat:'pdf', name:'PDF Merge', icon:'📎', desc:'பல PDF ஒன்றாக இணைக்கவும்'},
+  {id:'pdf-split', cat:'pdf', name:'PDF Split', icon:'✂️', desc:'PDF pages தனித்தனியாக'},
+  {id:'pdf-info', cat:'pdf', name:'PDF Info Viewer', icon:'ℹ️', desc:'Page count, metadata பார்க்க'},
+];
+
+// Premium tools (gated)
+const PREMIUM_TOOLS = ['ai-summarize', 'ai-grammar', 'bg-remover', 'bulk-convert'];
+
+let currentCat = 'all';
+let currentTool = null;
+let usageCount = JSON.parse(localStorage.getItem('kt_usage') || '{}');
+
+/* ---------------- ROUTING / RENDER SHELL ---------------- */
+function goHome(){ currentTool = null; location.hash=''; render(); }
+function openTool(id){ currentTool = id; location.hash = '#/'+id; render(); }
+window.addEventListener('hashchange', ()=>{
+  const h = location.hash.replace('#/','');
+  currentTool = h || null;
+  render();
+});
+
+function toggleTheme(){
+  const b = document.body;
+  const dark = b.getAttribute('data-theme') === 'dark';
+  b.setAttribute('data-theme', dark ? 'light':'dark');
+  document.getElementById('themeBtn').textContent = dark ? '🌙' : '☀️';
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+function subscribeEmail(){
+  const email = document.getElementById('emailInput').value;
+  if(!email || !email.includes('@')){ showToast('Valid email enter செய்யவும்'); return; }
+  localStorage.setItem('kt_email', email);
+  showToast('✅ Subscribed! Weekly tips வரும்.');
+  document.getElementById('emailInput').value = '';
+}
+
+function showPremium(){
+  showToast('💎 Pro Plan coming soon! ₹99/month for unlimited AI tools.');
+}
+
+function trackUsage(toolId){
+  const today = new Date().toDateString();
+  const key = toolId + '_' + today;
+  usageCount[key] = (usageCount[key] || 0) + 1;
+  localStorage.setItem('kt_usage', JSON.stringify(usageCount));
+  return usageCount[key];
+}
+
+function getUsage(toolId){
+  const today = new Date().toDateString();
+  return usageCount[toolId + '_' + today] || 0;
+}
+
+function checkLimit(toolId, limit=10){
+  const used = getUsage(toolId);
+  return { allowed: used < limit, used, limit, remaining: Math.max(0, limit - used) };
+}
+
+function renderUsageBar(toolId, limit=10){
+  const { used, remaining } = checkLimit(toolId, limit);
+  const pct = Math.min((used/limit)*100, 100);
+  return `<div class="usage-bar">
+    <span>Free: ${used}/${limit}</span>
+    <div class="bar"><div class="bar-fill" style="width:${pct}%"></div></div>
+    <span>${remaining} left today</span>
+  </div>`;
+}
+
+function render(){
+  document.getElementById('heroBlock').style.display = currentTool ? 'none' : 'block';
+  document.getElementById('affiliateBanner').style.display = currentTool ? 'none' : 'flex';
+  renderSidebar();
+  if(currentTool){ renderTool(currentTool); } else { renderHome(); }
+}
+
+function renderSidebar(){
+  const list = document.getElementById('catList');
+  list.innerHTML = CATEGORIES.map(c=>{
+    const count = c.id==='all' ? TOOLS.length : TOOLS.filter(t=>t.cat===c.id).length;
+    return `<div class="cat-item ${c.id===currentCat && !currentTool ?'active':''}" onclick="setCat('${c.id}')">
+      <span>${c.icon} ${c.name}</span><span class="count">${count}</span>
+    </div>`;
+  }).join('');
+}
+function setCat(id){ currentCat=id; currentTool=null; location.hash=''; render(); }
+
+function renderHome(){
+  const q = (document.getElementById('searchInput')?.value || '').toLowerCase();
+  const main = document.getElementById('mainArea');
+  let groups = currentCat==='all' ? CATEGORIES.filter(c=>c.id!=='all') : CATEGORIES.filter(c=>c.id===currentCat);
+  let html = '';
+  groups.forEach(g=>{
+    let tools = TOOLS.filter(t=>t.cat===g.id);
+    if(q) tools = tools.filter(t=> t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
+    if(!tools.length) return;
+    html += `<div class="section-title">${g.icon} ${g.name}</div><div class="grid">`;
+    tools.forEach((t,i)=>{
+      html += `<div class="card" onclick="openTool('${t.id}')">
+        <div class="top"><span class="icon">${t.icon}</span><span class="code">T-${String(TOOLS.indexOf(t)+1).padStart(2,'0')}</span></div>
+        <div class="name">${t.name}</div>
+        <div class="desc">${t.desc}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  if(!html) html = `<div class="empty">எந்த tool-ம் கிடைக்கவில்லை. வேற வார்த்தையில் தேடுங்கள்.</div>`;
+  main.innerHTML = html;
+}
+
+function toolShell(t, bodyHtml, isPremium=false){
+  const premiumBadge = isPremium ? '<span class="pro-badge">💎 PRO</span>' : '';
+  return `
+  <div class="tool-header">
+    <button class="back-btn" onclick="goHome()">← Back</button>
+    <div>
+      <div class="tool-title">${t.icon} ${t.name}${premiumBadge}</div>
+    </div>
+  </div>
+  <div class="tool-panel">${bodyHtml}</div>`;
+}
+
+function renderTool(id){
+  const t = TOOLS.find(x=>x.id===id);
+  const main = document.getElementById('mainArea');
+  if(!t){ main.innerHTML = `<div class="empty">Tool கிடைக்கவில்லை.</div>`; return; }
+  
+  const isPremium = PREMIUM_TOOLS.includes(id);
+  
+  let usageHtml = '';
+  if(!isPremium && ['img-compress','img-resize','img-convert','img-to-pdf','pdf-merge','pdf-split'].includes(id)){
+    usageHtml = renderUsageBar(id, 5);
+  }
+  
+  const shareHtml = `
+  <div class="social-share">
+    <button onclick="shareTool('${t.name}')">📤 Share</button>
+    <button onclick="copyLink('${t.id}')">🔗 Copy Link</button>
+  </div>`;
+  
+  main.innerHTML = toolShell(t, usageHtml + TOOL_RENDERERS[id]() + shareHtml, isPremium);
+  if(TOOL_INIT[id]) TOOL_INIT[id]();
+}
+
+function shareTool(name){
+  const url = location.href;
+  const text = `Check out ${name} on Kruvi Toolbox — free online tools!`;
+  if(navigator.share){
+    navigator.share({ title: name, text, url });
+  } else {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  }
+}
+
+function copyLink(toolId){
+  const url = location.origin + '/#/' + toolId;
+  navigator.clipboard.writeText(url).then(()=>showToast('🔗 Link copied!'));
+}
+
+function downloadDataUrl(dataUrl, filename){
+  fetch(dataUrl).then(res=>res.blob()).then(blob=>{
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(blobUrl), 3000);
+  }).catch(()=>{ window.open(dataUrl, '_blank'); });
+}
+function downloadBlob(blob, filename){
+  const blobUrl = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = blobUrl; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(blobUrl), 3000);
+}
+function copyText(elId, btn){
+  const el = document.getElementById(elId);
+  const text = el.value !== undefined ? el.value : el.textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    const old = btn.textContent; btn.textContent='Copied!'; setTimeout(()=>btn.textContent=old,1200);
+  });
+}
+/* ---------------- TOOL BODIES ---------------- */
+const TOOL_RENDERERS = {
+  'word-counter': ()=>`
+    <div class="field"><label>Text உள்ளிடவும்</label><textarea id="wc-input" oninput="wcUpdate()" placeholder="இங்கே type செய்யவும்..."></textarea></div>
+    <div class="stat-row">
+      <div class="stat"><b id="wc-words">0</b><span>Words</span></div>
+      <div class="stat"><b id="wc-chars">0</b><span>Characters</span></div>
+      <div class="stat"><b id="wc-sent">0</b><span>Sentences</span></div>
+      <div class="stat"><b id="wc-para">0</b><span>Paragraphs</span></div>
+      <div class="stat"><b id="wc-read">0</b><span>Min Read</span></div>
+    </div>`,
+  'char-counter': ()=>`
+    <div class="field"><label>Text உள்ளிடவும்</label><textarea id="cc-input" oninput="ccUpdate()"></textarea></div>
+    <div class="stat-row">
+      <div class="stat"><b id="cc-chars">0</b><span>Characters</span></div>
+      <div class="stat"><b id="cc-nospace">0</b><span>No spaces</span></div>
+      <div class="stat"><b id="cc-bytes">0</b><span>UTF-8 Bytes</span></div>
+      <div class="stat"><b id="cc-lines">0</b><span>Lines</span></div>
+    </div>`,
+  'case-converter': ()=>`
+    <div class="field"><label>Text</label><textarea id="case-input" oninput="caseUpdate()"></textarea></div>
+    <div class="row">
+      <button class="btn" onclick="applyCase('upper')">UPPERCASE</button>
+      <button class="btn secondary" onclick="applyCase('lower')">lowercase</button>
+      <button class="btn secondary" onclick="applyCase('title')">Title Case</button>
+      <button class="btn secondary" onclick="applyCase('sentence')">Sentence case</button>
+      <button class="btn secondary" onclick="applyCase('camel')">camelCase</button>
+      <button class="btn secondary" onclick="applyCase('snake')">snake_case</button>
+    </div>
+    <div class="output-box" id="case-output"></div>
+    <button class="copy-btn" onclick="copyText('case-output', this)">Copy</button>`,
+  'lorem-ipsum': ()=>`
+    <div class="row">
+      <div class="field"><label>எத்தனை Paragraphs</label><input type="number" id="lorem-count" value="3" min="1" max="50"></div>
+      <div class="field"><label>Words per paragraph</label><input type="number" id="lorem-words" value="50" min="10" max="200"></div>
+    </div>
+    <button class="btn" onclick="genLorem()">Generate</button>
+    <div class="output-box" id="lorem-output"></div>
+    <button class="copy-btn" onclick="copyText('lorem-output', this)">Copy</button>`,
+  'url-encode': ()=>`
+    <div class="field"><label>Text / URL</label><textarea id="url-input" oninput="urlUpdate()"></textarea></div>
+    <div class="row"><button class="btn" onclick="urlOp('encode')">Encode</button><button class="btn secondary" onclick="urlOp('decode')">Decode</button></div>
+    <div class="output-box" id="url-output"></div>
+    <button class="copy-btn" onclick="copyText('url-output', this)">Copy</button>`,
+  'base64': ()=>`
+    <div class="field"><label>Text</label><textarea id="b64-input"></textarea></div>
+    <div class="row"><button class="btn" onclick="b64Op('encode')">Encode</button><button class="btn secondary" onclick="b64Op('decode')">Decode</button></div>
+    <div class="output-box" id="b64-output"></div>
+    <button class="copy-btn" onclick="copyText('b64-output', this)">Copy</button>`,
+  'json-format': ()=>`
+    <div class="field"><label>JSON Input</label><textarea id="json-input" placeholder='{"name":"kruvi"}'></textarea></div>
+    <div class="row"><button class="btn" onclick="jsonOp('format')">Beautify</button><button class="btn secondary" onclick="jsonOp('minify')">Minify</button><button class="btn secondary" onclick="jsonOp('validate')">Validate</button></div>
+    <div class="output-box" id="json-output"></div>
+    <button class="copy-btn" onclick="copyText('json-output', this)">Copy</button>`,
+  'uuid': ()=>`
+    <div class="row">
+      <div class="field"><label>Count</label><input type="number" id="uuid-count" value="1" min="1" max="20"></div>
+    </div>
+    <button class="btn" onclick="genUUID()">Generate UUID</button>
+    <div class="output-box" id="uuid-output">—</div>
+    <button class="copy-btn" onclick="copyText('uuid-output', this)">Copy</button>`,
+  'password-gen': ()=>`
+    <div class="row">
+      <div class="field"><label>Length</label><input type="number" id="pw-len" value="14" min="4" max="64"></div>
+    </div>
+    <div class="row" style="gap:18px; margin-bottom:12px;">
+      <label style="font-size:.85rem; display:flex; align-items:center; gap:4px;"><input type="checkbox" id="pw-lower" checked> Lowercase</label>
+      <label style="font-size:.85rem; display:flex; align-items:center; gap:4px;"><input type="checkbox" id="pw-upper" checked> Uppercase</label>
+      <label style="font-size:.85rem; display:flex; align-items:center; gap:4px;"><input type="checkbox" id="pw-num" checked> Numbers</label>
+      <label style="font-size:.85rem; display:flex; align-items:center; gap:4px;"><input type="checkbox" id="pw-sym" checked> Symbols</label>
+    </div>
+    <button class="btn" onclick="genPassword()">Generate</button>
+    <div class="output-box" id="pw-output">—</div>
+    <button class="copy-btn" onclick="copyText('pw-output', this)">Copy</button>`,
+  'random-number': ()=>`
+    <div class="row">
+      <div class="field"><label>Min</label><input type="number" id="rn-min" value="1"></div>
+      <div class="field"><label>Max</label><input type="number" id="rn-max" value="100"></div>
+      <div class="field"><label>Count</label><input type="number" id="rn-count" value="1" min="1" max="100"></div>
+    </div>
+    <button class="btn" onclick="genRandom()">Generate</button>
+    <div class="output-box" id="rn-output">—</div>`,
+  'timestamp': ()=>`
+    <div class="row">
+      <div class="field"><label>Unix Timestamp (seconds)</label><input type="number" id="ts-input" placeholder="1752300000"></div>
+    </div>
+    <button class="btn" onclick="tsToDate()">→ Date</button>
+    <div class="output-box" id="ts-output1">—</div>
+    <div class="field" style="margin-top:14px;"><label>Date & Time</label><input type="datetime-local" id="date-input"></div>
+    <button class="btn secondary" onclick="dateToTs()">→ Timestamp</button>
+    <div class="output-box" id="ts-output2">—</div>`,
+  'qr-code': ()=>`
+    <div class="field"><label>Text / URL</label><input type="text" id="qr-input" placeholder="https://example.com"></div>
+    <div class="row">
+      <div class="field"><label>Width (px)</label><input type="number" id="qr-width" value="200" min="50" max="500"></div>
+      <div class="field"><label>Height (px)</label><input type="number" id="qr-height" value="200" min="50" max="500"></div>
+    </div>
+    <button class="btn" onclick="genQR()">Generate QR</button>
+    <div id="qr-render" style="margin-top:14px;"></div>
+    <div class="hint">Right-click → Save Image செய்யலாம். அல்லது download button click செய்யவும்.</div>
+    <button class="btn amber" style="margin-top:10px; display:none;" id="qr-download" onclick="downloadQR()">Download PNG</button>`,
+  'color-picker': ()=>`
+    <div class="field"><label>Color தேர்வு செய்யவும்</label><input type="color" id="color-input" value="#3C6E9C" oninput="colorUpdate()" style="height:44px;width:100%;border-radius:8px;border:1px solid var(--border);"></div>
+    <div class="color-swatch" id="color-swatch"></div>
+    <div class="stat-row">
+      <div class="stat"><b id="color-hex">#3C6E9C</b><span>HEX</span></div>
+      <div class="stat"><b id="color-rgb">-</b><span>RGB</span></div>
+      <div class="stat"><b id="color-hsl">-</b><span>HSL</span></div>
+    </div>
+    <button class="copy-btn" onclick="copyText('color-hex', this)">Copy HEX</button>`,
+
+  'age-calc': ()=>`
+    <div class="field"><label>பிறந்த தேதி</label><input type="date" id="age-dob"></div>
+    <div class="field"><label>Target Date (optional)</label><input type="date" id="age-target"></div>
+    <button class="btn" onclick="calcAge()">Calculate</button>
+    <div class="stat-row" id="age-output"></div>`,
+  'bmi-calc': ()=>`
+    <div class="row">
+      <div class="field"><label>உயரம் (cm)</label><input type="number" id="bmi-height" placeholder="170"></div>
+      <div class="field"><label>எடை (kg)</label><input type="number" id="bmi-weight" placeholder="65"></div>
+    </div>
+    <button class="btn" onclick="calcBMI()">Calculate BMI</button>
+    <div class="stat-row" id="bmi-output"></div>
+    <div class="hint" id="bmi-hint"></div>`,
+  'emi-calc': ()=>`
+    <div class="row">
+      <div class="field"><label>Loan Amount (₹)</label><input type="number" id="emi-amount" placeholder="500000"></div>
+      <div class="field"><label>வட்டி வீதம் (% per year)</label><input type="number" id="emi-rate" placeholder="9" step="0.1"></div>
+      <div class="field"><label>காலம் (months)</label><input type="number" id="emi-tenure" placeholder="60"></div>
+    </div>
+    <button class="btn" onclick="calcEMI()">Calculate EMI</button>
+    <div class="stat-row" id="emi-output"></div>`,
+  'gst-calc': ()=>`
+    <div class="row">
+      <div class="field"><label>Amount (₹)</label><input type="number" id="gst-amount" placeholder="1000"></div>
+      <div class="field"><label>GST %</label><input type="number" id="gst-rate" placeholder="18" step="0.1"></div>
+      <div class="field"><label>Type</label><select id="gst-type"><option value="add">Add GST</option><option value="remove">Remove GST</option></select></div>
+    </div>
+    <button class="btn" onclick="calcGST()">Calculate</button>
+    <div class="stat-row" id="gst-output"></div>`,
+  'percentage-calc': ()=>`
+    <div class="row">
+      <div class="field"><label>X</label><input type="number" id="pct-x" placeholder="25"></div>
+      <div class="field"><label>Y</label><input type="number" id="pct-y" placeholder="200"></div>
+    </div>
+    <button class="btn" onclick="calcPct()">X-ல் Y% என்ன?</button>
+    <div class="output-box" id="pct-output">—</div>
+    <div class="row" style="margin-top:12px;">
+      <button class="btn secondary" onclick="calcPctIncrease()">% Increase</button>
+      <button class="btn secondary" onclick="calcPctDecrease()">% Decrease</button>
+    </div>`,
+
+  'currency-convert': ()=>`
+    <div class="hint" style="margin-bottom:12px;">⚠️ இவை approximate rates (offline). Live rates-க்கு official source பாருங்கள்.</div>
+    <div class="row">
+      <div class="field"><label>Amount</label><input type="number" id="cur-amount" value="1"></div>
+      <div class="field"><label>From</label><select id="cur-from"></select></div>
+      <div class="field"><label>To</label><select id="cur-to"></select></div>
+    </div>
+    <button class="btn" onclick="calcCurrency()">Convert</button>
+    <div class="output-box" id="cur-output">—</div>`,
+  'length-convert': ()=>`
+    <div class="row">
+      <div class="field"><label>Value</label><input type="number" id="len-value" value="1"></div>
+      <div class="field"><label>From</label><select id="len-from">${['m','km','cm','mm','mile','yard','ft','inch'].map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div>
+      <div class="field"><label>To</label><select id="len-to">${['m','km','cm','mm','mile','yard','ft','inch'].map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div>
+    </div>
+    <button class="btn" onclick="calcLength()">Convert</button>
+    <div class="output-box" id="len-output">—</div>`,
+  'weight-convert': ()=>`
+    <div class="row">
+      <div class="field"><label>Value</label><input type="number" id="wt-value" value="1"></div>
+      <div class="field"><label>From</label><select id="wt-from">${['kg','g','mg','lb','oz','ton'].map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div>
+      <div class="field"><label>To</label><select id="wt-to">${['kg','g','mg','lb','oz','ton'].map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div>
+    </div>
+    <button class="btn" onclick="calcWeight()">Convert</button>
+    <div class="output-box" id="wt-output">—</div>`,
+  'temp-convert': ()=>`
+    <div class="row">
+      <div class="field"><label>Value</label><input type="number" id="temp-value" value="0"></div>
+      <div class="field"><label>From</label><select id="temp-from"><option>Celsius</option><option>Fahrenheit</option><option>Kelvin</option></select></div>
+    </div>
+    <button class="btn" onclick="calcTemp()">Convert to All</button>
+    <div class="stat-row" id="temp-output"></div>`,
+
+  'img-compress': ()=>`
+    <div class="field"><label>Image தேர்வு செய்யவும்</label><input type="file" id="ic-file" accept="image/*" onchange="icLoad()"></div>
+    <div class="field"><label>Quality (0.1 – 1.0)</label><input type="number" id="ic-quality" value="0.6" min="0.1" max="1" step="0.1"></div>
+    <button class="btn" onclick="icCompress()">Compress</button>
+    <div id="ic-result"></div>`,
+  'img-resize': ()=>`
+    <div class="field"><label>Image தேர்வு செய்யவும்</label><input type="file" id="ir-file" accept="image/*" onchange="irLoad()"></div>
+    <div class="row">
+      <div class="field"><label>Width (px)</label><input type="number" id="ir-width" placeholder="800"></div>
+      <div class="field"><label>Height (px)</label><input type="number" id="ir-height" placeholder="600"></div>
+    </div>
+    <button class="btn" onclick="irResize()">Resize</button>
+    <div id="ir-result"></div>`,
+  'img-convert': ()=>`
+    <div class="field"><label>Image தேர்வு செய்யவும்</label><input type="file" id="icv-file" accept="image/*" onchange="icvLoad()"></div>
+    <div class="field"><label>Output Format</label><select id="icv-format"><option value="image/png">PNG</option><option value="image/jpeg">JPG</option><option value="image/webp">WEBP</option></select></div>
+    <button class="btn" onclick="icvConvert()">Convert</button>
+    <div id="icv-result"></div>`,
+  'img-crop': ()=>`
+    <div class="field"><label>Image தேர்வு செய்யவும்</label><input type="file" id="ib64-file" accept="image/*" onchange="ib64Load()"></div>
+    <div class="output-box" id="ib64-output" style="max-height:180px; overflow:auto;">—</div>
+    <button class="copy-btn" onclick="copyText('ib64-output', this)">Copy Base64</button>`,
+
+  'img-to-pdf': ()=>`
+    <div class="field"><label>Images தேர்வு செய்யவும் (multiple)</label><input type="file" id="itp-file" accept="image/*" multiple onchange="itpLoad()"></div>
+    <div class="file-list" id="itp-list"></div>
+    <button class="btn" onclick="itpConvert()">Convert to PDF</button>
+    <div id="itp-result" class="hint"></div>`,
+  'pdf-merge': ()=>`
+    <div class="field"><label>PDF Files தேர்வு செய்யவும் (order-படி merge ஆகும்)</label><input type="file" id="pm-file" accept="application/pdf" multiple onchange="pmLoad()"></div>
+    <div class="file-list" id="pm-list"></div>
+    <button class="btn" onclick="pmMerge()">Merge PDFs</button>
+    <div id="pm-result" class="hint"></div>`,
+  'pdf-split': ()=>`
+    <div class="field"><label>PDF File தேர்வு செய்யவும்</label><input type="file" id="ps-file" accept="application/pdf" onchange="psLoad()"></div>
+    <div class="hint" id="ps-info"></div>
+    <div class="row">
+      <div class="field"><label>Page From</label><input type="number" id="ps-from" value="1"></div>
+      <div class="field"><label>Page To</label><input type="number" id="ps-to" value="1"></div>
+    </div>
+    <button class="btn" onclick="psSplit()">Extract Pages</button>
+    <div id="ps-result" class="hint"></div>`,
+  'pdf-info': ()=>`
+    <div class="field"><label>PDF File தேர்வு செய்யவும்</label><input type="file" id="pi-file" accept="application/pdf" onchange="piLoad()"></div>
+    <div class="stat-row" id="pi-output"></div>`,
+};
+
+const TOOL_INIT = {
+  'currency-convert': ()=>{
+    const units = Object.keys(CUR_RATES);
+    const f = document.getElementById('cur-from'), t = document.getElementById('cur-to');
+    f.innerHTML = units.map(u=>`<option ${u==='USD'?'selected':''}>${u}</option>`).join('');
+    t.innerHTML = units.map(u=>`<option ${u==='INR'?'selected':''}>${u}</option>`).join('');
+  }
+};
+/* ---------------- TEXT TOOLS ---------------- */
+function wcUpdate(){
+  const v = document.getElementById('wc-input').value;
+  const words = v.trim()===''?0:v.trim().split(/\s+/).length;
+  const sent = (v.match(/[.!?]+/g)||[]).length;
+  const para = v.trim()===''?0:v.split(/\n+/).filter(p=>p.trim()!=='').length;
+  const readTime = Math.ceil(words/200);
+  document.getElementById('wc-words').textContent = words;
+  document.getElementById('wc-chars').textContent = v.length;
+  document.getElementById('wc-sent').textContent = sent;
+  document.getElementById('wc-para').textContent = para;
+  document.getElementById('wc-read').textContent = readTime;
+}
+function ccUpdate(){
+  const v = document.getElementById('cc-input').value;
+  document.getElementById('cc-chars').textContent = v.length;
+  document.getElementById('cc-nospace').textContent = v.replace(/\s/g,'').length;
+  document.getElementById('cc-bytes').textContent = new Blob([v]).size;
+  document.getElementById('cc-lines').textContent = v.split('\n').length;
+}
+function applyCase(mode){
+  const v = document.getElementById('case-input').value;
+  let out = v;
+  if(mode==='upper') out = v.toUpperCase();
+  else if(mode==='lower') out = v.toLowerCase();
+  else if(mode==='title') out = v.replace(/\w\S*/g, t=>t[0].toUpperCase()+t.slice(1).toLowerCase());
+  else if(mode==='sentence') out = v.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c=>c.toUpperCase());
+  else if(mode==='camel') out = v.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+  else if(mode==='snake') out = v.replace(/\s+/g, '_').toLowerCase();
+  document.getElementById('case-output').textContent = out;
+}
+function genLorem(){
+  const words = "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum".split(' ');
+  const n = parseInt(document.getElementById('lorem-count').value)||1;
+  const wpp = parseInt(document.getElementById('lorem-words').value)||50;
+  let out=[];
+  for(let i=0;i<n;i++){
+    let arr=[];
+    for(let j=0;j<wpp;j++) arr.push(words[Math.floor(Math.random()*words.length)]);
+    let s = arr.join(' ');
+    out.push(s.charAt(0).toUpperCase()+s.slice(1)+'.');
+  }
+  document.getElementById('lorem-output').textContent = out.join('\n\n');
+}
+function urlUpdate(){}
+function urlOp(mode){
+  const v = document.getElementById('url-input').value;
+  try{
+    document.getElementById('url-output').textContent = mode==='encode' ? encodeURIComponent(v) : decodeURIComponent(v);
+  }catch(e){ document.getElementById('url-output').textContent = 'Error: invalid input'; }
+}
+function b64Op(mode){
+  const v = document.getElementById('b64-input').value;
+  try{
+    document.getElementById('b64-output').textContent = mode==='encode' ? btoa(unescape(encodeURIComponent(v))) : decodeURIComponent(escape(atob(v)));
+  }catch(e){ document.getElementById('b64-output').textContent = 'Error: invalid input'; }
+}
+function jsonOp(mode){
+  const v = document.getElementById('json-input').value;
+  try{
+    const obj = JSON.parse(v);
+    if(mode==='validate'){ document.getElementById('json-output').textContent = 'Valid JSON\n\n' + JSON.stringify(obj,null,2); }
+    else { document.getElementById('json-output').textContent = mode==='format' ? JSON.stringify(obj,null,2) : JSON.stringify(obj); }
+  }catch(e){ document.getElementById('json-output').textContent = 'Invalid JSON: '+e.message; }
+}
+function genUUID(){
+  const count = parseInt(document.getElementById('uuid-count').value)||1;
+  let uuids = [];
+  for(let c=0;c<count;c++){
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c=>{
+      const r = Math.random()*16|0; const v = c==='x'?r:(r&0x3|0x8); return v.toString(16);
+    });
+    uuids.push(uuid);
+  }
+  document.getElementById('uuid-output').textContent = uuids.join('\n');
+}
+function genPassword(){
+  const len = parseInt(document.getElementById('pw-len').value)||14;
+  let chars = '';
+  if(document.getElementById('pw-lower').checked) chars += 'abcdefghijklmnopqrstuvwxyz';
+  if(document.getElementById('pw-upper').checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if(document.getElementById('pw-num').checked) chars += '0123456789';
+  if(document.getElementById('pw-sym').checked) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+  if(!chars){ showToast('At least one character type select செய்யவும்'); return; }
+  let out='';
+  for(let i=0;i<len;i++) out += chars[Math.floor(Math.random()*chars.length)];
+  document.getElementById('pw-output').textContent = out;
+}
+function genRandom(){
+  const min = parseInt(document.getElementById('rn-min').value);
+  const max = parseInt(document.getElementById('rn-max').value);
+  const count = parseInt(document.getElementById('rn-count').value)||1;
+  let out = [];
+  for(let i=0;i<count;i++) out.push(Math.floor(Math.random()*(max-min+1))+min;
+  document.getElementById('rn-output').textContent = out.join('\n');
+}
+function tsToDate(){
+  const ts = parseInt(document.getElementById('ts-input').value);
+  if(isNaN(ts)){ document.getElementById('ts-output1').textContent='Enter valid timestamp'; return; }
+  document.getElementById('ts-output1').textContent = new Date(ts*1000).toString();
+}
+function dateToTs(){
+  const v = document.getElementById('date-input').value;
+  const d = new Date(v);
+  if(isNaN(d.getTime())){ document.getElementById('ts-output2').textContent='Enter valid date'; return; }
+  document.getElementById('ts-output2').textContent = Math.floor(d.getTime()/1000);
+}
+let qrDataUrl = '';
+function genQR(){
+  const v = document.getElementById('qr-input').value || 'https://example.com';
+  const w = parseInt(document.getElementById('qr-width').value)||200;
+  const h = parseInt(document.getElementById('qr-height').value)||200;
+  const el = document.getElementById('qr-render');
+  el.innerHTML='';
+  new QRCode(el, {text:v, width:w, height:h});
+  setTimeout(()=>{
+    const canvas = el.querySelector('canvas');
+    if(canvas){ qrDataUrl = canvas.toDataURL('image/png'); document.getElementById('qr-download').style.display='inline-block'; }
+  }, 300);
+}
+function downloadQR(){ if(qrDataUrl) downloadDataUrl(qrDataUrl, 'qrcode.png'); }
+function colorUpdate(){
+  const hex = document.getElementById('color-input').value;
+  document.getElementById('color-swatch').style.background = hex;
+  document.getElementById('color-hex').textContent = hex.toUpperCase();
+  const r = parseInt(hex.substr(1,2),16), g = parseInt(hex.substr(3,2),16), b = parseInt(hex.substr(5,2),16);
+  document.getElementById('color-rgb').textContent = `${r}, ${g}, ${b}`;
+  const rr = r/255, gg = g/255, bb = b/255;
+  const max = Math.max(rr,gg,bb), min = Math.min(rr,gg,bb);
+  let h=0, s=0, l=(max+min)/2;
+  if(max!==min){
+    const d = max-min;
+    s = l>0.5 ? d/(2-max-min) : d/(max+min);
+    switch(max){ case rr: h=(gg-bb)/d+(gg<bb?6:0); break; case gg: h=(bb-rr)/d+2; break; case bb: h=(rr-gg)/d+4; break; }
+    h /= 6;
+  }
+  document.getElementById('color-hsl').textContent = `${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%`;
+}
+
+/* ---------------- CALCULATORS ---------------- */
+function calcAge(){
+  const dob = new Date(document.getElementById('age-dob').value);
+  if(isNaN(dob.getTime())) return;
+  const targetVal = document.getElementById('age-target').value;
+  const now = targetVal ? new Date(targetVal) : new Date();
+  let years = now.getFullYear()-dob.getFullYear();
+  let months = now.getMonth()-dob.getMonth();
+  let days = now.getDate()-dob.getDate();
+  if(days<0){ months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if(months<0){ years--; months+=12; }
+  const totalDays = Math.floor((now-dob)/(1000*60*60*24));
+  const nextBirthday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
+  if(nextBirthday < now) nextBirthday.setFullYear(now.getFullYear()+1);
+  const daysUntil = Math.ceil((nextBirthday-now)/(1000*60*60*24));
+  document.getElementById('age-output').innerHTML = `
+    <div class="stat"><b>${years}</b><span>Years</span></div>
+    <div class="stat"><b>${months}</b><span>Months</span></div>
+    <div class="stat"><b>${days}</b><span>Days</span></div>
+    <div class="stat"><b>${totalDays}</b><span>Total Days</span></div>
+    <div class="stat"><b>${daysUntil}</b><span>Days to Bday</span></div>`;
+}
+function calcBMI(){
+  const h = parseFloat(document.getElementById('bmi-height').value)/100;
+  const w = parseFloat(document.getElementById('bmi-weight').value);
+  if(!h||!w) return;
+  const bmi = w/(h*h);
+  let cat = bmi<18.5?'Underweight':bmi<25?'Normal':bmi<30?'Overweight':'Obese';
+  let color = bmi<18.5?'#E8A33D':bmi<25?'#22C55E':bmi<30?'#F97316':'#EF4444';
+  document.getElementById('bmi-output').innerHTML = `
+    <div class="stat"><b>${bmi.toFixed(1)}</b><span>BMI</span></div>
+    <div class="stat"><b style="color:${color}">${cat}</b><span>Category</span></div>`;
+  document.getElementById('bmi-hint').textContent = bmi<18.5?'Underweight — consult a nutritionist':bmi<25?'Healthy weight — maintain it!':bmi<30?'Overweight — consider exercise':'Obese — consult a doctor';
+}
+function calcEMI(){
+  const p = parseFloat(document.getElementById('emi-amount').value);
+  const annualRate = parseFloat(document.getElementById('emi-rate').value);
+  const n = parseFloat(document.getElementById('emi-tenure').value);
+  if(!p||!annualRate||!n) return;
+  const r = annualRate/12/100;
+  const emi = (p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  const total = emi*n;
+  const interest = total-p;
+  document.getElementById('emi-output').innerHTML = `
+    <div class="stat"><b>₹${emi.toFixed(0)}</b><span>Monthly EMI</span></div>
+    <div class="stat"><b>₹${interest.toFixed(0)}</b><span>Total Interest</span></div>
+    <div class="stat"><b>₹${total.toFixed(0)}</b><span>Total Payment</span></div>`;
+}
+function calcGST(){
+  const amt = parseFloat(document.getElementById('gst-amount').value);
+  const rate = parseFloat(document.getElementById('gst-rate').value);
+  const type = document.getElementById('gst-type').value;
+  if(!amt||!rate) return;
+  let base, gst, total;
+  if(type==='add'){ base=amt; gst=amt*rate/100; total=base+gst; }
+  else{ total=amt; base=amt/(1+rate/100); gst=total-base; }
+  document.getElementById('gst-output').innerHTML = `
+    <div class="stat"><b>₹${base.toFixed(2)}</b><span>Base Amount</span></div>
+    <div class="stat"><b>₹${gst.toFixed(2)}</b><span>GST</span></div>
+    <div class="stat"><b>₹${total.toFixed(2)}</b><span>Total</span></div>`;
+}
+function calcPct(){
+  const x = parseFloat(document.getElementById('pct-x').value);
+  const y = parseFloat(document.getElementById('pct-y').value);
+  if(isNaN(x)||isNaN(y)) return;
+  document.getElementById('pct-output').textContent = `${y}-ல் ${x}% = ${(x/100*y).toFixed(2)}`;
+}
+function calcPctIncrease(){
+  const x = parseFloat(document.getElementById('pct-x').value);
+  const y = parseFloat(document.getElementById('pct-y').value);
+  if(isNaN(x)||isNaN(y)||x===0) return;
+  const inc = ((y-x)/x)*100;
+  document.getElementById('pct-output').textContent = `${x} → ${y} = ${inc.toFixed(2)}% ${inc>=0?'increase':'decrease'}`;
+}
+function calcPctDecrease(){
+  const x = parseFloat(document.getElementById('pct-x').value);
+  const y = parseFloat(document.getElementById('pct-y').value);
+  if(isNaN(x)||isNaN(y)||x===0) return;
+  const dec = ((x-y)/x)*100;
+  document.getElementById('pct-output').textContent = `${x} → ${y} = ${dec.toFixed(2)}% ${dec>=0?'decrease':'increase'}`;
+}
+
+/* ---------------- CONVERTERS ---------------- */
+const CUR_RATES = { USD:1, INR:83.4, EUR:0.92, GBP:0.79, JPY:157.2, AUD:1.51, CAD:1.37, SGD:1.35, CNY:7.23, AED:3.67 };
+function calcCurrency(){
+  const amt = parseFloat(document.getElementById('cur-amount').value);
+  const from = document.getElementById('cur-from').value;
+  const to = document.getElementById('cur-to').value;
+  if(isNaN(amt)) return;
+  const usd = amt/CUR_RATES[from];
+  const result = usd*CUR_RATES[to];
+  document.getElementById('cur-output').textContent = `${amt} ${from} = ${result.toFixed(2)} ${to}`;
+}
+const LEN_TO_M = { m:1, km:1000, cm:0.01, mm:0.001, mile:1609.34, yard:0.9144, ft:0.3048, inch:0.0254 };
+function calcLength(){
+  const v = parseFloat(document.getElementById('len-value').value);
+  const from = document.getElementById('len-from').value, to = document.getElementById('len-to').value;
+  const m = v*LEN_TO_M[from];
+  document.getElementById('len-output').textContent = `${v} ${from} = ${(m/LEN_TO_M[to]).toFixed(4)} ${to}`;
+}
+const WT_TO_KG = { kg:1, g:0.001, mg:0.000001, lb:0.453592, oz:0.0283495, ton:1000 };
+function calcWeight(){
+  const v = parseFloat(document.getElementById('wt-value').value);
+  const from = document.getElementById('wt-from').value, to = document.getElementById('wt-to').value;
+  const kg = v*WT_TO_KG[from];
+  document.getElementById('wt-output').textContent = `${v} ${from} = ${(kg/WT_TO_KG[to]).toFixed(4)} ${to}`;
+}
+function calcTemp(){
+  const v = parseFloat(document.getElementById('temp-value').value);
+  const from = document.getElementById('temp-from').value;
+  let c;
+  if(from==='Celsius') c=v;
+  else if(from==='Fahrenheit') c=(v-32)*5/9;
+  else c=v-273.15;
+  const f = c*9/5+32, k = c+273.15;
+  document.getElementById('temp-output').innerHTML = `
+    <div class="stat"><b>${c.toFixed(1)}°C</b><span>Celsius</span></div>
+    <div class="stat"><b>${f.toFixed(1)}°F</b><span>Fahrenheit</span></div>
+    <div class="stat"><b>${k.toFixed(1)}K</b><span>Kelvin</span></div>`;
+}
+/* ---------------- IMAGE TOOLS ---------------- */
+let icImg=null, irImg=null, icvImg=null;
+function loadImgFile(inputId, cb){
+  const file = document.getElementById(inputId).files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e=>{ const img = new Image(); img.onload=()=>cb(img,file); img.src = e.target.result; };
+  reader.readAsDataURL(file);
+}
+function icLoad(){ loadImgFile('ic-file', img=>icImg=img); }
+function icCompress(){
+  if(!icImg){ alert('Image தேர்வு செய்யவும்'); return; }
+  trackUsage('img-compress');
+  const q = parseFloat(document.getElementById('ic-quality').value)||0.6;
+  const canvas = document.createElement('canvas');
+  canvas.width = icImg.width; canvas.height = icImg.height;
+  canvas.getContext('2d').drawImage(icImg,0,0);
+  const dataUrl = canvas.toDataURL('image/jpeg', q);
+  const sizeKB = Math.round((dataUrl.length*0.75)/1024);
+  window._icDataUrl = dataUrl;
+  document.getElementById('ic-result').innerHTML = `
+    <img class="preview-img" src="${dataUrl}"><div class="hint">Approx size: ${sizeKB} KB</div>
+    <button class="btn amber" style="margin-top:10px;" onclick="downloadDataUrl(window._icDataUrl,'compressed.jpg')">Download</button>`;
+}
+function irLoad(){ loadImgFile('ir-file', img=>{ irImg=img; document.getElementById('ir-width').value=img.width; document.getElementById('ir-height').value=img.height; }); }
+function irResize(){
+  if(!irImg){ alert('Image தேர்வு செய்யவும்'); return; }
+  trackUsage('img-resize');
+  const w = parseInt(document.getElementById('ir-width').value)||irImg.width;
+  const h = parseInt(document.getElementById('ir-height').value)||irImg.height;
+  const canvas = document.createElement('canvas');
+  canvas.width=w; canvas.height=h;
+  canvas.getContext('2d').drawImage(irImg,0,0,w,h);
+  const dataUrl = canvas.toDataURL('image/png');
+  window._irDataUrl = dataUrl;
+  document.getElementById('ir-result').innerHTML = `<img class="preview-img" src="${dataUrl}">
+    <button class="btn amber" style="margin-top:10px;" onclick="downloadDataUrl(window._irDataUrl,'resized.png')">Download</button>`;
+}
+function icvLoad(){ loadImgFile('icv-file', img=>icvImg=img); }
+function icvConvert(){
+  if(!icvImg){ alert('Image தேர்வு செய்யவும்'); return; }
+  trackUsage('img-convert');
+  const fmt = document.getElementById('icv-format').value;
+  const canvas = document.createElement('canvas');
+  canvas.width=icvImg.width; canvas.height=icvImg.height;
+  canvas.getContext('2d').drawImage(icvImg,0,0);
+  const dataUrl = canvas.toDataURL(fmt);
+  const ext = fmt.split('/')[1];
+  window._icvDataUrl = dataUrl;
+  document.getElementById('icv-result').innerHTML = `<img class="preview-img" src="${dataUrl}">
+    <button class="btn amber" style="margin-top:10px;" onclick="downloadDataUrl(window._icvDataUrl,'converted.${ext}')">Download</button>`;
+}
+function ib64Load(){
+  const file = document.getElementById('ib64-file').files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e=>{ document.getElementById('ib64-output').textContent = e.target.result; };
+  reader.readAsDataURL(file);
+}
+
+/* ---------------- PDF TOOLS ---------------- */
+let itpFiles=[];
+function itpLoad(){
+  itpFiles = Array.from(document.getElementById('itp-file').files);
+  document.getElementById('itp-list').textContent = itpFiles.map(f=>f.name).join(', ');
+}
+async function itpConvert(){
+  if(!itpFiles.length){ alert('Images தேர்வு செய்யவும்'); return; }
+  trackUsage('img-to-pdf');
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+  for(let i=0;i<itpFiles.length;i++){
+    const dataUrl = await new Promise(res=>{ const r=new FileReader(); r.onload=e=>res(e.target.result); r.readAsDataURL(itpFiles[i]); });
+    const img = await new Promise(res=>{ const im=new Image(); im.onload=()=>res(im); im.src=dataUrl; });
+    const pw = pdf.internal.pageSize.getWidth(), ph = pdf.internal.pageSize.getHeight();
+    const ratio = Math.min(pw/img.width, ph/img.height);
+    const w = img.width*ratio, h = img.height*ratio;
+    if(i>0) pdf.addPage();
+    pdf.addImage(dataUrl,'JPEG',(pw-w)/2,(ph-h)/2,w,h);
+  }
+  const blob = pdf.output('blob');
+  window._itpBlob = blob;
+  document.getElementById('itp-result').innerHTML = `<button class="btn amber" onclick="downloadBlob(window._itpBlob,'images.pdf')">Download PDF</button>`;
+}
+
+let pmFiles=[];
+function pmLoad(){
+  pmFiles = Array.from(document.getElementById('pm-file').files);
+  document.getElementById('pm-list').textContent = pmFiles.map(f=>f.name).join(', ');
+}
+async function pmMerge(){
+  if(pmFiles.length<2){ alert('குறைந்தது 2 PDF files தேர்வு செய்யவும்'); return; }
+  trackUsage('pdf-merge');
+  const { PDFDocument } = PDFLib;
+  const merged = await PDFDocument.create();
+  for(const file of pmFiles){
+    const bytes = await file.arrayBuffer();
+    const src = await PDFDocument.load(bytes);
+    const pages = await merged.copyPages(src, src.getPageIndices());
+    pages.forEach(p=>merged.addPage(p));
+  }
+  const outBytes = await merged.save();
+  const blob = new Blob([outBytes], {type:'application/pdf'});
+  window._pmBlob = blob;
+  document.getElementById('pm-result').innerHTML = `<button class="btn amber" onclick="downloadBlob(window._pmBlob,'merged.pdf')">Download Merged PDF</button>`;
+}
+
+let psBytes=null, psPageCount=0;
+async function psLoad(){
+  const file = document.getElementById('ps-file').files[0];
+  if(!file) return;
+  psBytes = await file.arrayBuffer();
+  const { PDFDocument } = PDFLib;
+  const doc = await PDFDocument.load(psBytes);
+  psPageCount = doc.getPageCount();
+  document.getElementById('ps-info').textContent = `மொத்தம் ${psPageCount} pages உள்ளன.`;
+  document.getElementById('ps-to').value = psPageCount;
+}
+async function psSplit(){
+  if(!psBytes){ alert('PDF தேர்வு செய்யவும்'); return; }
+  trackUsage('pdf-split');
+  const { PDFDocument } = PDFLib;
+  const from = parseInt(document.getElementById('ps-from').value)-1;
+  const to = parseInt(document.getElementById('ps-to').value)-1;
+  const src = await PDFDocument.load(psBytes);
+  const out = await PDFDocument.create();
+  const indices = [];
+  for(let i=from;i<=to;i++) if(i>=0 && i<psPageCount) indices.push(i);
+  const pages = await out.copyPages(src, indices);
+  pages.forEach(p=>out.addPage(p));
+  const outBytes = await out.save();
+  const blob = new Blob([outBytes], {type:'application/pdf'});
+  window._psBlob = blob;
+  document.getElementById('ps-result').innerHTML = `<button class="btn amber" onclick="downloadBlob(window._psBlob,'split.pdf')">Download Extracted PDF</button>`;
+}
+async function piLoad(){
+  const file = document.getElementById('pi-file').files[0];
+  if(!file) return;
+  const bytes = await file.arrayBuffer();
+  const { PDFDocument } = PDFLib;
+  const doc = await PDFDocument.load(bytes);
+  const pages = doc.getPageCount();
+  const sizeKB = Math.round(file.size/1024);
+  document.getElementById('pi-output').innerHTML = `
+    <div class="stat"><b>${pages}</b><span>Pages</span></div>
+    <div class="stat"><b>${sizeKB} KB</b><span>File Size</span></div>`;
+}
+
+/* ---------------- INIT ---------------- */
+render();
+</script>
+</body>
+</html>
