@@ -598,3 +598,280 @@ function genPassword(){
   for(let i=0;i<len;i++) out += chars[Math.floor(Math.random()*chars.length)];
   document.getElementById('pw-output').textContent = out;
 }
+function genRandom(){
+  const min = parseInt(document.getElementById('rn-min').value);
+  const max = parseInt(document.getElementById('rn-max').value);
+  document.getElementById('rn-output').textContent = Math.floor(Math.random()*(max-min+1))+min;
+}
+function tsToDate(){
+  const ts = parseInt(document.getElementById('ts-input').value);
+  if(isNaN(ts)){ document.getElementById('ts-output1').textContent='Enter valid timestamp'; return; }
+  document.getElementById('ts-output1').textContent = new Date(ts*1000).toString();
+}
+function dateToTs(){
+  const v = document.getElementById('date-input').value;
+  const d = new Date(v);
+  if(isNaN(d.getTime())){ document.getElementById('ts-output2').textContent='Enter valid date'; return; }
+  document.getElementById('ts-output2').textContent = Math.floor(d.getTime()/1000);
+}
+function genQR(){
+  const v = document.getElementById('qr-input').value || 'https://example.com';
+  const el = document.getElementById('qr-render');
+  el.innerHTML='';
+  new QRCode(el, {text:v, width:200, height:200});
+}
+function colorUpdate(){
+  const hex = document.getElementById('color-input').value;
+  document.getElementById('color-swatch').style.background = hex;
+  document.getElementById('color-hex').textContent = hex.toUpperCase();
+  const r = parseInt(hex.substr(1,2),16), g = parseInt(hex.substr(3,2),16), b = parseInt(hex.substr(5,2),16);
+  document.getElementById('color-rgb').textContent = `${r}, ${g}, ${b}`;
+}
+
+/* ---------------- CALCULATORS ---------------- */
+function calcAge(){
+  const dob = new Date(document.getElementById('age-dob').value);
+  if(isNaN(dob.getTime())) return;
+  const now = new Date();
+  let years = now.getFullYear()-dob.getFullYear();
+  let months = now.getMonth()-dob.getMonth();
+  let days = now.getDate()-dob.getDate();
+  if(days<0){ months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if(months<0){ years--; months+=12; }
+  const totalDays = Math.floor((now-dob)/(1000*60*60*24));
+  document.getElementById('age-output').innerHTML = `
+    <div class="stat"><b>${years}</b><span>Years</span></div>
+    <div class="stat"><b>${months}</b><span>Months</span></div>
+    <div class="stat"><b>${days}</b><span>Days</span></div>
+    <div class="stat"><b>${totalDays}</b><span>Total Days</span></div>`;
+}
+function calcBMI(){
+  const h = parseFloat(document.getElementById('bmi-height').value)/100;
+  const w = parseFloat(document.getElementById('bmi-weight').value);
+  if(!h||!w) return;
+  const bmi = w/(h*h);
+  let cat = bmi<18.5?'Underweight':bmi<25?'Normal':bmi<30?'Overweight':'Obese';
+  document.getElementById('bmi-output').innerHTML = `
+    <div class="stat"><b>${bmi.toFixed(1)}</b><span>BMI</span></div>
+    <div class="stat"><b>${cat}</b><span>Category</span></div>`;
+}
+function calcEMI(){
+  const p = parseFloat(document.getElementById('emi-amount').value);
+  const annualRate = parseFloat(document.getElementById('emi-rate').value);
+  const n = parseFloat(document.getElementById('emi-tenure').value);
+  if(!p||!annualRate||!n) return;
+  const r = annualRate/12/100;
+  const emi = (p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  const total = emi*n;
+  const interest = total-p;
+  document.getElementById('emi-output').innerHTML = `
+    <div class="stat"><b>₹${emi.toFixed(0)}</b><span>Monthly EMI</span></div>
+    <div class="stat"><b>₹${interest.toFixed(0)}</b><span>Total Interest</span></div>
+    <div class="stat"><b>₹${total.toFixed(0)}</b><span>Total Payment</span></div>`;
+}
+function calcGST(){
+  const amt = parseFloat(document.getElementById('gst-amount').value);
+  const rate = parseFloat(document.getElementById('gst-rate').value);
+  const type = document.getElementById('gst-type').value;
+  if(!amt||!rate) return;
+  let base, gst, total;
+  if(type==='add'){ base=amt; gst=amt*rate/100; total=base+gst; }
+  else{ total=amt; base=amt/(1+rate/100); gst=total-base; }
+  document.getElementById('gst-output').innerHTML = `
+    <div class="stat"><b>₹${base.toFixed(2)}</b><span>Base Amount</span></div>
+    <div class="stat"><b>₹${gst.toFixed(2)}</b><span>GST</span></div>
+    <div class="stat"><b>₹${total.toFixed(2)}</b><span>Total</span></div>`;
+}
+function calcPct(){
+  const x = parseFloat(document.getElementById('pct-x').value);
+  const y = parseFloat(document.getElementById('pct-y').value);
+  if(isNaN(x)||isNaN(y)) return;
+  document.getElementById('pct-output').textContent = `${y}-ல் ${x}% = ${(x/100*y).toFixed(2)}`;
+}
+
+/* ---------------- CONVERTERS ---------------- */
+const CUR_RATES = { USD:1, INR:83.4, EUR:0.92, GBP:0.79, JPY:157.2, AUD:1.51, CAD:1.37, SGD:1.35 };
+function calcCurrency(){
+  const amt = parseFloat(document.getElementById('cur-amount').value);
+  const from = document.getElementById('cur-from').value;
+  const to = document.getElementById('cur-to').value;
+  if(isNaN(amt)) return;
+  const usd = amt/CUR_RATES[from];
+  const result = usd*CUR_RATES[to];
+  document.getElementById('cur-output').textContent = `${amt} ${from} = ${result.toFixed(2)} ${to}`;
+}
+const LEN_TO_M = { m:1, km:1000, cm:0.01, mm:0.001, mile:1609.34, yard:0.9144, ft:0.3048, inch:0.0254 };
+function calcLength(){
+  const v = parseFloat(document.getElementById('len-value').value);
+  const from = document.getElementById('len-from').value, to = document.getElementById('len-to').value;
+  const m = v*LEN_TO_M[from];
+  document.getElementById('len-output').textContent = `${v} ${from} = ${(m/LEN_TO_M[to]).toFixed(4)} ${to}`;
+}
+const WT_TO_KG = { kg:1, g:0.001, mg:0.000001, lb:0.453592, oz:0.0283495, ton:1000 };
+function calcWeight(){
+  const v = parseFloat(document.getElementById('wt-value').value);
+  const from = document.getElementById('wt-from').value, to = document.getElementById('wt-to').value;
+  const kg = v*WT_TO_KG[from];
+  document.getElementById('wt-output').textContent = `${v} ${from} = ${(kg/WT_TO_KG[to]).toFixed(4)} ${to}`;
+}
+function calcTemp(){
+  const v = parseFloat(document.getElementById('temp-value').value);
+  const from = document.getElementById('temp-from').value;
+  let c;
+  if(from==='Celsius') c=v;
+  else if(from==='Fahrenheit') c=(v-32)*5/9;
+  else c=v-273.15;
+  const f = c*9/5+32, k = c+273.15;
+  document.getElementById('temp-output').innerHTML = `
+    <div class="stat"><b>${c.toFixed(1)}°C</b><span>Celsius</span></div>
+    <div class="stat"><b>${f.toFixed(1)}°F</b><span>Fahrenheit</span></div>
+    <div class="stat"><b>${k.toFixed(1)}K</b><span>Kelvin</span></div>`;
+}
+
+/* ---------------- IMAGE TOOLS ---------------- */
+let icImg=null, irImg=null, icvImg=null;
+function loadImgFile(inputId, cb){
+  const file = document.getElementById(inputId).files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e=>{ const img = new Image(); img.onload=()=>cb(img,file); img.src = e.target.result; };
+  reader.readAsDataURL(file);
+}
+function icLoad(){ loadImgFile('ic-file', img=>icImg=img); }
+function icCompress(){
+  if(!icImg){ alert('Image தேர்வு செய்யவும்'); return; }
+  const q = parseFloat(document.getElementById('ic-quality').value)||0.6;
+  const canvas = document.createElement('canvas');
+  canvas.width = icImg.width; canvas.height = icImg.height;
+  canvas.getContext('2d').drawImage(icImg,0,0);
+  const dataUrl = canvas.toDataURL('image/jpeg', q);
+  const sizeKB = Math.round((dataUrl.length*0.75)/1024);
+  window._icDataUrl = dataUrl;
+  document.getElementById('ic-result').innerHTML = `
+    <img class="preview-img" src="${dataUrl}"><div class="hint">Approx size: ${sizeKB} KB</div>
+    <button class="btn amber" style="margin-top:10px;" onclick="downloadDataUrl(window._icDataUrl,'compressed.jpg')">Download</button>`;
+}
+function irLoad(){ loadImgFile('ir-file', img=>{ irImg=img; document.getElementById('ir-width').value=img.width; document.getElementById('ir-height').value=img.height; }); }
+function irResize(){
+  if(!irImg){ alert('Image தேர்வு செய்யவும்'); return; }
+  const w = parseInt(document.getElementById('ir-width').value)||irImg.width;
+  const h = parseInt(document.getElementById('ir-height').value)||irImg.height;
+  const canvas = document.createElement('canvas');
+  canvas.width=w; canvas.height=h;
+  canvas.getContext('2d').drawImage(irImg,0,0,w,h);
+  const dataUrl = canvas.toDataURL('image/png');
+  window._irDataUrl = dataUrl;
+  document.getElementById('ir-result').innerHTML = `<img class="preview-img" src="${dataUrl}">
+    <button class="btn amber" style="margin-top:10px;" onclick="downloadDataUrl(window._irDataUrl,'resized.png')">Download</button>`;
+}
+function icvLoad(){ loadImgFile('icv-file', img=>icvImg=img); }
+function icvConvert(){
+  if(!icvImg){ alert('Image தேர்வு செய்யவும்'); return; }
+  const fmt = document.getElementById('icv-format').value;
+  const canvas = document.createElement('canvas');
+  canvas.width=icvImg.width; canvas.height=icvImg.height;
+  canvas.getContext('2d').drawImage(icvImg,0,0);
+  const dataUrl = canvas.toDataURL(fmt);
+  const ext = fmt.split('/')[1];
+  window._icvDataUrl = dataUrl;
+  document.getElementById('icv-result').innerHTML = `<img class="preview-img" src="${dataUrl}">
+    <button class="btn amber" style="margin-top:10px;" onclick="downloadDataUrl(window._icvDataUrl,'converted.${ext}')">Download</button>`;
+}
+function ib64Load(){
+  const file = document.getElementById('ib64-file').files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e=>{ document.getElementById('ib64-output').textContent = e.target.result; };
+  reader.readAsDataURL(file);
+}
+
+/* ---------------- PDF TOOLS ---------------- */
+let itpFiles=[];
+function itpLoad(){
+  itpFiles = Array.from(document.getElementById('itp-file').files);
+  document.getElementById('itp-list').textContent = itpFiles.map(f=>f.name).join(', ');
+}
+async function itpConvert(){
+  if(!itpFiles.length){ alert('Images தேர்வு செய்யவும்'); return; }
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+  for(let i=0;i<itpFiles.length;i++){
+    const dataUrl = await new Promise(res=>{ const r=new FileReader(); r.onload=e=>res(e.target.result); r.readAsDataURL(itpFiles[i]); });
+    const img = await new Promise(res=>{ const im=new Image(); im.onload=()=>res(im); im.src=dataUrl; });
+    const pw = pdf.internal.pageSize.getWidth(), ph = pdf.internal.pageSize.getHeight();
+    const ratio = Math.min(pw/img.width, ph/img.height);
+    const w = img.width*ratio, h = img.height*ratio;
+    if(i>0) pdf.addPage();
+    pdf.addImage(dataUrl,'JPEG',(pw-w)/2,(ph-h)/2,w,h);
+  }
+  const blob = pdf.output('blob');
+  window._itpBlob = blob;
+  document.getElementById('itp-result').innerHTML = `<button class="btn amber" onclick="downloadBlob(window._itpBlob,'images.pdf')">Download PDF</button>`;
+}
+
+let pmFiles=[];
+function pmLoad(){
+  pmFiles = Array.from(document.getElementById('pm-file').files);
+  document.getElementById('pm-list').textContent = pmFiles.map(f=>f.name).join(', ');
+}
+async function pmMerge(){
+  if(pmFiles.length<2){ alert('குறைந்தது 2 PDF files தேர்வு செய்யவும்'); return; }
+  const { PDFDocument } = PDFLib;
+  const merged = await PDFDocument.create();
+  for(const file of pmFiles){
+    const bytes = await file.arrayBuffer();
+    const src = await PDFDocument.load(bytes);
+    const pages = await merged.copyPages(src, src.getPageIndices());
+    pages.forEach(p=>merged.addPage(p));
+  }
+  const outBytes = await merged.save();
+  const blob = new Blob([outBytes], {type:'application/pdf'});
+  window._pmBlob = blob;
+  document.getElementById('pm-result').innerHTML = `<button class="btn amber" onclick="downloadBlob(window._pmBlob,'merged.pdf')">Download Merged PDF</button>`;
+}
+
+let psBytes=null, psPageCount=0;
+async function psLoad(){
+  const file = document.getElementById('ps-file').files[0];
+  if(!file) return;
+  psBytes = await file.arrayBuffer();
+  const { PDFDocument } = PDFLib;
+  const doc = await PDFDocument.load(psBytes);
+  psPageCount = doc.getPageCount();
+  document.getElementById('ps-info').textContent = `மொத்தம் ${psPageCount} pages உள்ளன.`;
+  document.getElementById('ps-to').value = psPageCount;
+}
+async function psSplit(){
+  if(!psBytes){ alert('PDF தேர்வு செய்யவும்'); return; }
+  const { PDFDocument } = PDFLib;
+  const from = parseInt(document.getElementById('ps-from').value)-1;
+  const to = parseInt(document.getElementById('ps-to').value)-1;
+  const src = await PDFDocument.load(psBytes);
+  const out = await PDFDocument.create();
+  const indices = [];
+  for(let i=from;i<=to;i++) if(i>=0 && i<psPageCount) indices.push(i);
+  const pages = await out.copyPages(src, indices);
+  pages.forEach(p=>out.addPage(p));
+  const outBytes = await out.save();
+  const blob = new Blob([outBytes], {type:'application/pdf'});
+  window._psBlob = blob;
+  document.getElementById('ps-result').innerHTML = `<button class="btn amber" onclick="downloadBlob(window._psBlob,'split.pdf')">Download Extracted PDF</button>`;
+}
+async function piLoad(){
+  const file = document.getElementById('pi-file').files[0];
+  if(!file) return;
+  const bytes = await file.arrayBuffer();
+  const { PDFDocument } = PDFLib;
+  const doc = await PDFDocument.load(bytes);
+  const pages = doc.getPageCount();
+  const sizeKB = Math.round(file.size/1024);
+  document.getElementById('pi-output').innerHTML = `
+    <div class="stat"><b>${pages}</b><span>Pages</span></div>
+    <div class="stat"><b>${sizeKB} KB</b><span>File Size</span></div>`;
+}
+
+/* ---------------- INIT ---------------- */
+render();
+</script>
+</body>
+</html>
