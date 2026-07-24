@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kruvi Toolbox — 50+ Free Online Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<style>
+:root{
+  --bg:#F6F4EE; --panel:#FFFFFF; --line:#3C6E9C; --accent:#E8A33D;
+  --text:#1B2430; --muted:#6B7686; --border:#E1DDD1; --grid:rgba(60,110,156,0.08);
+  --mono:'JetBrains Mono',monospace; --disp:'Space Grotesk',sans-serif; --body:'Inter',sans-serif;
+  --radius:10px;
+}
+[data-theme="dark"]{
+  --bg:#0E1A2B; --panel:#132540; --line:#5B9BD5; --accent:#E8A33D;
+  --text:#E8ECF1; --muted:#8798AC; --border:#213652; --grid:rgba(91,155,213,0.07);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  font-family:var(--body); background:var(--bg); color:var(--text);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:32px 32px;
+  min-height:100vh; transition:background .25s, color .25s;
+}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 20px;}
+
+/* Header */
+header{border-bottom:1px solid var(--border); background:var(--panel); position:sticky; top:0; z-index:50;}
+.header-inner{display:flex; align-items:center; gap:20px; padding:14px 20px; max-width:1200px; margin:0 auto;}
+.logo{font-family:var(--disp); font-weight:700; font-size:1.3rem; display:flex; align-items:center; gap:8px; cursor:pointer;}
+.logo .mark{width:28px; height:28px; border:2px solid var(--line); border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:.7rem; color:var(--line); font-weight:600;}
+.searchbar{flex:1; max-width:420px; position:relative;}
+.searchbar input{
+  width:100%; padding:9px 14px 9px 34px; border-radius:999px; border:1px solid var(--border);
+  background:var(--bg); color:var(--text); font-size:.9rem; font-family:var(--body);
+}
+.searchbar::before{content:"⌕"; position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:1rem;}
+.header-actions{display:flex; align-items:center; gap:10px; margin-left:auto;}
+.icon-btn{width:36px; height:36px; border-radius:999px; border:1px solid var(--border); background:var(--bg); color:var(--text); display:flex; align-items:center; justify-content:center; font-size:1.05rem;}
+.badge-note{font-size:.68rem; color:var(--muted); font-family:var(--mono); border:1px dashed var(--border); padding:6px 10px; border-radius:8px; display:none;}
+@media(max-width:720px){.searchbar{display:none} .badge-note{display:none}}
+
+/* Hero */
+.hero{padding:56px 0 36px; text-align:left;}
+.eyebrow{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; color:var(--line); text-transform:uppercase; margin-bottom:14px;}
+.hero h1{font-family:var(--disp); font-size:clamp(2rem,5vw,3.4rem); font-weight:700; line-height:1.05; max-width:760px;}
+.hero h1 span{color:var(--line);}
+.hero p{margin-top:16px; color:var(--muted); max-width:560px; font-size:1.02rem; line-height:1.6;}
+
+/* Layout */
+.layout{display:grid; grid-template-columns:200px 1fr; gap:28px; padding-bottom:60px;}
+@media(max-width:820px){.layout{grid-template-columns:1fr;}}
+.sidebar{position:sticky; top:70px; align-self:start;}
+.sidebar h4{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:10px;}
+.cat-list{display:flex; flex-direction:column; gap:2px;}
+.cat-item{padding:9px 12px; border-radius:8px; font-size:.9rem; color:var(--text); display:flex; justify-content:space-between; align-items:center;}
+.cat-item:hover{background:var(--panel);}
+.cat-item.active{background:var(--line); color:#fff;}
+.cat-item span.count{font-family:var(--mono); font-size:.72rem; opacity:.7;}
+@media(max-width:820px){.sidebar{position:static;} .cat-list{flex-direction:row; flex-wrap:wrap;}}
+
+.section-title{font-family:var(--disp); font-size:1.15rem; font-weight:600; margin:26px 0 14px; display:flex; align-items:center; gap:10px;}
+.section-title::after{content:""; flex:1; height:1px; background:var(--border);}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px;}
+.card{
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  padding:16px; display:flex; flex-direction:column; gap:8px; transition:transform .15s, border-color .15s;
+}
+.card:hover{transform:translateY(-2px); border-color:var(--line);}
+.card .top{display:flex; justify-content:space-between; align-items:flex-start;}
+.card .icon{font-size:1.4rem;}
+.card .code{font-family:var(--mono); font-size:.68rem; color:var(--muted);}
+.card .name{font-family:var(--disp); font-weight:600; font-size:.98rem;}
+.card .desc{font-size:.78rem; color:var(--muted); line-height:1.4;}
+
+/* Tool page */
+.tool-header{display:flex; align-items:center; gap:14px; padding:30px 0 10px;}
+.back-btn{font-family:var(--mono); font-size:.8rem; color:var(--line); border:1px solid var(--border); padding:6px 12px; border-radius:8px;}
+.tool-title{font-family:var(--disp); font-size:1.6rem; font-weight:700;}
+.tool-panel{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:26px; margin-top:16px;}
+.field{margin-bottom:16px;}
+.field label{display:block; font-size:.8rem; color:var(--muted); margin-bottom:6px; font-family:var(--mono);}
+.field input[type=text], .field input[type=number], .field input[type=date], .field select, .field textarea{
+  width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:.92rem; font-family:var(--body);
+}
+.field textarea{min-height:140px; font-family:var(--mono); resize:vertical;}
+.row{display:flex; gap:14px; flex-wrap:wrap;}
+.row > .field{flex:1; min-width:150px;}
+.btn{
+  background:var(--line); color:#fff; border:none; padding:11px 20px; border-radius:8px; font-weight:600; font-size:.9rem;
+}
+.btn.secondary{background:transparent; border:1px solid var(--border); color:var(--text);}
+.btn.amber{background:var(--accent); color:#241a00;}
+.output-box{
+  margin-top:16px; background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:14px;
+  font-family:var(--mono); font-size:.85rem; white-space:pre-wrap; word-break:break-all; min-height:44px;
+}
+.stat-row{display:flex; gap:22px; flex-wrap:wrap; margin-top:14px;}
+.stat{background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 18px; text-align:center;}
+.stat b{display:block; font-family:var(--disp); font-size:1.4rem;}
+.stat span{font-size:.7rem; color:var(--muted); font-family:var(--mono); text-transform:uppercase;}
+.copy-btn{font-family:var(--mono); font-size:.72rem; color:var(--line); border:1px solid var(--line); padding:5px 10px; border-radius:6px; margin-top:8px;}
+.hint{font-size:.76rem; color:var(--muted); margin-top:8px; line-height:1.5;}
+.pill{display:inline-block; font-family:var(--mono); font-size:.65rem; padding:3px 8px; border-radius:999px; border:1px solid var(--accent); color:var(--accent); margin-left:8px;}
+input[type=file]{width:100%; padding:10px; border:1px dashed var(--border); border-radius:8px; background:var(--bg); font-size:.85rem;}
+.preview-img{max-width:100%; border-radius:8px; margin-top:10px; border:1px solid var(--border);}
+.color-swatch{width:100%; height:70px; border-radius:8px; border:1px solid var(--border); margin-top:10px;}
+footer{border-top:1px solid var(--border); padding:30px 0; margin-top:40px; text-align:center; color:var(--muted); font-size:.8rem;}
+.empty{color:var(--muted); font-size:.9rem; padding:30px 0; text-align:center;}
+.file-list{font-size:.8rem; color:var(--muted); margin-top:8px;}
+</style>
+</head>
+<body data-theme="light">
+
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="goHome()"><span class="mark">KT</span> Kruvi Toolbox</div>
+    <div class="searchbar"><input id="searchInput" type="text" placeholder="Tool தேடுங்கள்... (e.g. QR, BMI, PDF)" oninput="renderHome()"></div>
+    <div class="header-actions">
+      <span class="badge-note" id="loginNote">Login/Premium — server setup தேவை</span>
+      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="heroBlock" class="hero">
+    <div class="eyebrow">50+ Free Online Utilities</div>
+    <h1>ஒரே இடத்தில் <span>எல்லா Tools</span>.<br>Sign-up வேண்டாம், Install வேண்டாம்.</h1>
+    <p>PDF, Image, Text, Calculator, Unit Converter tools — browser-லேயே வேலை செய்யும், உங்க files server-க்கு போகாது.</p>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h4>Categories</h4>
+      <div class="cat-list" id="catList"></div>
+    </aside>
+    <main id="mainArea"></main>
+  </div>
+</div>
+
+<footer>Kruvi Toolbox — Client-side tools. Data உங்க browser-லேயே process ஆகும், எங்க server-க்கு upload ஆகாது.</footer>
+
+<script>
+/* ---------------- DATA ---------------- */
+const CATEGORIES = [
+  {id:'all', name:'அனைத்தும்', icon:'✦'},
+  {id:'text', name:'Text Tools', icon:'📝'},
+  {id:'calc', name:'Calculators', icon:'🧮'},
+  {id:'convert', name:'Unit Converters', icon:'🔁'},
+  {id:'image', name:'Image Tools', icon:'🖼️'},
+  {id:'pdf', name:'PDF Tools', icon:'📄'},
+];
+
+const TOOLS = [
+  {id:'word-counter', cat:'text', name:'Word Counter', icon:'🔤', desc:'Words, characters, sentences count'},
+  {id:'char-counter', cat:'text', name:'Character Counter', icon:'🔢', desc:'Character & byte count'},
+  {id:'case-converter', cat:'text', name:'Text Case Converter', icon:'Aa', desc:'UPPER, lower, Title, Sentence'},
+  {id:'lorem-ipsum', cat:'text', name:'Lorem Ipsum Generator', icon:'¶', desc:'Dummy paragraphs உருவாக்கவும்'},
+  {id:'url-encode', cat:'text', name:'URL Encoder/Decoder', icon:'🔗', desc:'encodeURIComponent tool'},
+  {id:'base64', cat:'text', name:'Base64 Encoder/Decoder', icon:'⌗', desc:'Text ⇄ Base64'},
+  {id:'json-format', cat:'text', name:'JSON Formatter', icon:'{ }', desc:'Beautify/minify JSON'},
+  {id:'uuid', cat:'text', name:'UUID Generator', icon:'🆔', desc:'Random UUID v4'},
+  {id:'password-gen', cat:'text', name:'Password Generator', icon:'🔑', desc:'Strong random passwords'},
+  {id:'random-number', cat:'text', name:'Random Number Generator', icon:'🎲', desc:'Range-based random number'},
+  {id:'timestamp', cat:'text', name:'Timestamp Converter', icon:'⏱️', desc:'Unix timestamp ⇄ date'},
+  {id:'qr-code', cat:'text', name:'QR Code Generator', icon:'▦', desc:'Text/URL to QR code'},
+  {id:'color-picker', cat:'text', name:'Color Picker', icon:'🎨', desc:'HEX / RGB picker & preview'},
+
+  {id:'age-calc', cat:'calc', name:'Age Calculator', icon:'🎂', desc:'Birth date-லிருந்து வயது'},
+  {id:'bmi-calc', cat:'calc', name:'BMI Calculator', icon:'⚖️', desc:'Body Mass Index'},
+  {id:'emi-calc', cat:'calc', name:'EMI Calculator', icon:'🏦', desc:'Loan EMI கணக்கீடு'},
+  {id:'gst-calc', cat:'calc', name:'GST Calculator', icon:'🧾', desc:'GST add/remove'},
+  {id:'percentage-calc', cat:'calc', name:'Percentage Calculator', icon:'%', desc:'Percentage கணக்கீடுகள்'},
+
+  {id:'currency-convert', cat:'convert', name:'Currency Converter', icon:'💱', desc:'Approx rates (live அல்ல)'},
+  {id:'length-convert', cat:'convert', name:'Length Converter', icon:'📏', desc:'m, km, ft, inch, mile'},
+  {id:'weight-convert', cat:'convert', name:'Weight Converter', icon:'⚙️', desc:'kg, g, lb, oz'},
+  {id:'temp-convert', cat:'convert', name:'Temperature Converter', icon:'🌡️', desc:'°C ⇄ °F ⇄ K'},
+
+  {id:'img-compress', cat:'image', name:'Image Compressor', icon:'🗜️', desc:'Quality குறைச்சு size reduce'},
+  {id:'img-resize', cat:'image', name:'Image Resizer', icon:'⤢', desc:'Width/height resize'},
+  {id:'img-convert', cat:'image', name:'Image Format Converter', icon:'🔄', desc:'PNG ⇄ JPG ⇄ WEBP'},
+  {id:'img-crop', cat:'image', name:'Image to Base64', icon:'🖼️', desc:'Image → Base64 string'},
+
+  {id:'img-to-pdf', cat:'pdf', name:'Image to PDF', icon:'🖨️', desc:'Images-ஐ PDF ஆக்கவும்'},
+  {id:'pdf-merge', cat:'pdf', name:'PDF Merge', icon:'📎', desc:'பல PDF ஒன்றாக இணைக்கவும்'},
+  {id:'pdf-split', cat:'pdf', name:'PDF Split', icon:'✂️', desc:'PDF pages தனித்தனியாக'},
+  {id:'pdf-info', cat:'pdf', name:'PDF Info Viewer', icon:'ℹ️', desc:'Page count, metadata பார்க்க'},
+];
+
+let currentCat = 'all';
+let currentTool = null;
+
+/* ---------------- ROUTING / RENDER SHELL ---------------- */
+function goHome(){ currentTool = null; location.hash=''; render(); }
+function openTool(id){ currentTool = id; location.hash = '#/'+id; render(); }
+window.addEventListener('hashchange', ()=>{
+  const h = location.hash.replace('#/','');
+  currentTool = h || null;
+  render();
+});
+
+function toggleTheme(){
+  const b = document.body;
+  const dark = b.getAttribute('data-theme') === 'dark';
+  b.setAttribute('data-theme', dark ? 'light':'dark');
+  document.getElementById('themeBtn').textContent = dark ? '🌙' : '☀️';
+}
+
+function render(){
+  document.getElementById('heroBlock').style.display = currentTool ? 'none' : 'block';
+  renderSidebar();
+  if(currentTool){ renderTool(currentTool); } else { renderHome(); }
+}
+
+function renderSidebar(){
+  const list = document.getElementById('catList');
+  list.innerHTML = CATEGORIES.map(c=>{
+    const count = c.id==='all' ? TOOLS.length : TOOLS.filter(t=>t.cat===c.id).length;
+    return `<div class="cat-item ${c.id===currentCat && !currentTool ?'active':''}" onclick="setCat('${c.id}')">
+      <span>${c.icon} ${c.name}</span><span class="count">${count}</span>
+    </div>`;
+  }).join('');
+}
+function setCat(id){ currentCat=id; currentTool=null; location.hash=''; render(); }
+
+function renderHome(){
+  const q = (document.getElementById('searchInput')?.value || '').toLowerCase();
+  const main = document.getElementById('mainArea');
+  let groups = currentCat==='all' ? CATEGORIES.filter(c=>c.id!=='all') : CATEGORIES.filter(c=>c.id===currentCat);
+  let html = '';
+  groups.forEach(g=>{
+    let tools = TOOLS.filter(t=>t.cat===g.id);
+    if(q) tools = tools.filter(t=> t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
+    if(!tools.length) return;
+    html += `<div class="section-title">${g.icon} ${g.name}</div><div class="grid">`;
+    tools.forEach((t,i)=>{
+      html += `<div class="card" onclick="openTool('${t.id}')">
+        <div class="top"><span class="icon">${t.icon}</span><span class="code">T-${String(TOOLS.indexOf(t)+1).padStart(2,'0')}</span></div>
+        <div class="name">${t.name}</div>
+        <div class="desc">${t.desc}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  if(!html) html = `<div class="empty">எந்த tool-ம் கிடைக்கவில்லை. வேற வார்த்தையில் தேடுங்கள்.</div>`;
+  main.innerHTML = html;
+}
+
+function toolShell(t, bodyHtml){
+  return `
+  <div class="tool-header">
+    <button class="back-btn" onclick="goHome()">← Back</button>
+    <div>
+      <div class="tool-title">${t.icon} ${t.name}</div>
+    </div>
+  </div>
+  <div class="tool-panel">${bodyHtml}</div>`;
+}
+
+function renderTool(id){
+  const t = TOOLS.find(x=>x.id===id);
+  const main = document.getElementById('mainArea');
+  if(!t){ main.innerHTML = `<div class="empty">Tool கிடைக்கவில்லை.</div>`; return; }
+  main.innerHTML = toolShell(t, TOOL_RENDERERS[id]());
+  if(TOOL_INIT[id]) TOOL_INIT[id]();
+}
+
+function downloadDataUrl(dataUrl, filename){
+  // Convert data URL to Blob for more reliable downloads across browsers
+  fetch(dataUrl).then(res=>res.blob()).then(blob=>{
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(blobUrl), 3000);
+  }).catch(()=>{
+    // fallback: open in new tab so user can long-press/right-click save
+    window.open(dataUrl, '_blank');
+  });
+}
+function downloadBlob(blob, filename){
+  const blobUrl = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = blobUrl; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(blobUrl), 3000);
+}
+function copyText(elId, btn){
+  const el = document.getElementById(elId);
+  const text = el.value !== undefined ? el.value : el.textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    const old = btn.textContent; btn.textContent='Copied!'; setTimeout(()=>btn.textContent=old,1200);
+  });
+}
+
+/* ---------------- TOOL BODIES ---------------- */
+const TOOL_RENDERERS = {
+  'word-counter': ()=>`
+    <div class="field"><label>Text உள்ளிடவும்</label><textarea id="wc-input" oninput="wcUpdate()" placeholder="இங்கே type செய்யவும்..."></textarea></div>
+    <div class="stat-row">
+      <div class="stat"><b id="wc-words">0</b><span>Words</span></div>
+      <div class="stat"><b id="wc-chars">0</b><span>Characters</span></div>
+      <div class="stat"><b id="wc-sent">0</b><span>Sentences</span></div>
+      <div class="stat"><b id="wc-para">0</b><span>Paragraphs</span></div>
+    </div>`,
+  'char-counter': ()=>`
+    <div class="field"><label>Text உள்ளிடவும்</label><textarea id="cc-input" oninput="ccUpdate()"></textarea></div>
+    <div class="stat-row">
+      <div class="stat"><b id="cc-chars">0</b><span>Characters</span></div>
+      <div class="stat"><b id="cc-nospace">0</b><span>No spaces</span></div>
+      <div class="stat"><b id="cc-bytes">0</b><span>UTF-8 Bytes</span></div>
+    </div>`,
+  'case-converter': ()=>`
+    <div class="field"><label>Text</label><textarea id="case-input" oninput="caseUpdate()"></textarea></div>
+    <div class="row">
+      <button class="btn" onclick="applyCase('upper')">UPPERCASE</button>
+      <button class="btn secondary" onclick="applyCase('lower')">lowercase</button>
+      <button class="btn secondary" onclick="applyCase('title')">Title Case</button>
+      <button class="btn secondary" onclick="applyCase('sentence')">Sentence case</button>
+    </div>
+    <div class="output-box" id="case-output"></div>
+    <button class="copy-btn" onclick="copyText('case-output', this)">Copy</button>`,
+  'lorem-ipsum': ()=>`
+    <div class="row">
+      <div class="field"><label>எத்தனை Paragraphs</label><input type="number" id="lorem-count" value="3" min="1" max="20"></div>
+    </div>
+    <button class="btn" onclick="genLorem()">Generate</button>
+    <div class="output-box" id="lorem-output"></div>
+    <button class="copy-btn" onclick="copyText('lorem-output', this)">Copy</button>`,
+  'url-encode': ()=>`
+    <div class="field"><label>Text / URL</label><textarea id="url-input" oninput="urlUpdate()"></textarea></div>
+    <div class="row"><button class="btn" onclick="urlOp('encode')">Encode</button><button class="btn secondary" onclick="urlOp('decode')">Decode</button></div>
+    <div class="output-box" id="url-output"></div>
+    <button class="copy-btn" onclick="copyText('url-output', this)">Copy</button>`,
+  'base64': ()=>`
+    <div class="field"><label>Text</label><textarea id="b64-input"></textarea></div>
+    <div class="row"><button class="btn" onclick="b64Op('encode')">Encode</button><button class="btn secondary" onclick="b64Op('decode')">Decode</button></div>
+    <div class="output-box" id="b64-output"></div>
+    <button class="copy-btn" onclick="copyText('b64-output', this)">Copy</button>`,
+  'json-format': ()=>`
+    <div class="field"><label>JSON Input</label><textarea id="json-input" placeholder='{"name":"kruvi"}'></textarea></div>
+    <div class="row"
