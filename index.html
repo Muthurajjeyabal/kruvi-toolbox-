@@ -351,4 +351,250 @@ const TOOL_RENDERERS = {
     <button class="copy-btn" onclick="copyText('b64-output', this)">Copy</button>`,
   'json-format': ()=>`
     <div class="field"><label>JSON Input</label><textarea id="json-input" placeholder='{"name":"kruvi"}'></textarea></div>
-    <div class="row"
+    <div class="row"><button class="btn" onclick="jsonOp('format')">Beautify</button><button class="btn secondary" onclick="jsonOp('minify')">Minify</button></div>
+    <div class="output-box" id="json-output"></div>
+    <button class="copy-btn" onclick="copyText('json-output', this)">Copy</button>`,
+  'uuid': ()=>`
+    <button class="btn" onclick="genUUID()">Generate UUID</button>
+    <div class="output-box" id="uuid-output">—</div>
+    <button class="copy-btn" onclick="copyText('uuid-output', this)">Copy</button>`,
+  'password-gen': ()=>`
+    <div class="row">
+      <div class="field"><label>Length</label><input type="number" id="pw-len" value="14" min="4" max="64"></div>
+    </div>
+    <div class="row">
+      <label><input type="checkbox" id="pw-upper" checked> Uppercase</label>
+      <label><input type="checkbox" id="pw-num" checked> Numbers</label>
+      <label><input type="checkbox" id="pw-sym" checked> Symbols</label>
+    </div>
+    <button class="btn" onclick="genPassword()">Generate</button>
+    <div class="output-box" id="pw-output">—</div>
+    <button class="copy-btn" onclick="copyText('pw-output', this)">Copy</button>`,
+  'random-number': ()=>`
+    <div class="row">
+      <div class="field"><label>Min</label><input type="number" id="rn-min" value="1"></div>
+      <div class="field"><label>Max</label><input type="number" id="rn-max" value="100"></div>
+    </div>
+    <button class="btn" onclick="genRandom()">Generate</button>
+    <div class="output-box" id="rn-output">—</div>`,
+  'timestamp': ()=>`
+    <div class="row">
+      <div class="field"><label>Unix Timestamp (seconds)</label><input type="number" id="ts-input" placeholder="1752300000"></div>
+    </div>
+    <button class="btn" onclick="tsToDate()">→ Date</button>
+    <div class="output-box" id="ts-output1">—</div>
+    <div class="field" style="margin-top:14px;"><label>Date & Time</label><input type="text" id="date-input" placeholder="YYYY-MM-DDTHH:mm"></div>
+    <button class="btn secondary" onclick="dateToTs()">→ Timestamp</button>
+    <div class="output-box" id="ts-output2">—</div>`,
+  'qr-code': ()=>`
+    <div class="field"><label>Text / URL</label><input type="text" id="qr-input" placeholder="https://example.com"></div>
+    <button class="btn" onclick="genQR()">Generate QR</button>
+    <div id="qr-render" style="margin-top:14px;"></div>
+    <div class="hint">Right-click → Save Image செய்யலாம்.</div>`,
+  'color-picker': ()=>`
+    <div class="field"><label>Color தேர்வு செய்யவும்</label><input type="color" id="color-input" value="#3C6E9C" oninput="colorUpdate()" style="height:44px;width:100%;border-radius:8px;border:1px solid var(--border);"></div>
+    <div class="color-swatch" id="color-swatch"></div>
+    <div class="stat-row">
+      <div class="stat"><b id="color-hex">#3C6E9C</b><span>HEX</span></div>
+      <div class="stat"><b id="color-rgb">-</b><span>RGB</span></div>
+    </div>`,
+
+  'age-calc': ()=>`
+    <div class="field"><label>பிறந்த தேதி</label><input type="date" id="age-dob"></div>
+    <button class="btn" onclick="calcAge()">Calculate</button>
+    <div class="stat-row" id="age-output"></div>`,
+  'bmi-calc': ()=>`
+    <div class="row">
+      <div class="field"><label>உயரம் (cm)</label><input type="number" id="bmi-height" placeholder="170"></div>
+      <div class="field"><label>எடை (kg)</label><input type="number" id="bmi-weight" placeholder="65"></div>
+    </div>
+    <button class="btn" onclick="calcBMI()">Calculate BMI</button>
+    <div class="stat-row" id="bmi-output"></div>`,
+  'emi-calc': ()=>`
+    <div class="row">
+      <div class="field"><label>Loan Amount (₹)</label><input type="number" id="emi-amount" placeholder="500000"></div>
+      <div class="field"><label>வட்டி வீதம் (% per year)</label><input type="number" id="emi-rate" placeholder="9"></div>
+      <div class="field"><label>காலம் (months)</label><input type="number" id="emi-tenure" placeholder="60"></div>
+    </div>
+    <button class="btn" onclick="calcEMI()">Calculate EMI</button>
+    <div class="stat-row" id="emi-output"></div>`,
+  'gst-calc': ()=>`
+    <div class="row">
+      <div class="field"><label>Amount (₹)</label><input type="number" id="gst-amount" placeholder="1000"></div>
+      <div class="field"><label>GST %</label><input type="number" id="gst-rate" placeholder="18"></div>
+      <div class="field"><label>Type</label><select id="gst-type"><option value="add">Add GST</option><option value="remove">Remove GST</option></select></div>
+    </div>
+    <button class="btn" onclick="calcGST()">Calculate</button>
+    <div class="stat-row" id="gst-output"></div>`,
+  'percentage-calc': ()=>`
+    <div class="row">
+      <div class="field"><label>X</label><input type="number" id="pct-x" placeholder="25"></div>
+      <div class="field"><label>Y</label><input type="number" id="pct-y" placeholder="200"></div>
+    </div>
+    <button class="btn" onclick="calcPct()">X-ல் Y% என்ன?</button>
+    <div class="output-box" id="pct-output">—</div>`,
+
+  'currency-convert': ()=>`
+    <div class="hint" style="margin-bottom:12px;">⚠️ இவை approximate rates (offline). Live rates-க்கு official source பாருங்கள்.</div>
+    <div class="row">
+      <div class="field"><label>Amount</label><input type="number" id="cur-amount" value="1"></div>
+      <div class="field"><label>From</label><select id="cur-from"></select></div>
+      <div class="field"><label>To</label><select id="cur-to"></select></div>
+    </div>
+    <button class="btn" onclick="calcCurrency()">Convert</button>
+    <div class="output-box" id="cur-output">—</div>`,
+  'length-convert': ()=>`
+    <div class="row">
+      <div class="field"><label>Value</label><input type="number" id="len-value" value="1"></div>
+      <div class="field"><label>From</label><select id="len-from">${['m','km','cm','mm','mile','yard','ft','inch'].map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div>
+      <div class="field"><label>To</label><select id="len-to">${['m','km','cm','mm','mile','yard','ft','inch'].map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div>
+    </div>
+    <button class="btn" onclick="calcLength()">Convert</button>
+    <div class="output-box" id="len-output">—</div>`,
+  'weight-convert': ()=>`
+    <div class="row">
+      <div class="field"><label>Value</label><input type="number" id="wt-value" value="1"></div>
+      <div class="field"><label>From</label><select id="wt-from">${['kg','g','mg','lb','oz','ton'].map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div>
+      <div class="field"><label>To</label><select id="wt-to">${['kg','g','mg','lb','oz','ton'].map(u=>`<option value="${u}">${u}</option>`).join('')}</select></div>
+    </div>
+    <button class="btn" onclick="calcWeight()">Convert</button>
+    <div class="output-box" id="wt-output">—</div>`,
+  'temp-convert': ()=>`
+    <div class="row">
+      <div class="field"><label>Value</label><input type="number" id="temp-value" value="0"></div>
+      <div class="field"><label>From</label><select id="temp-from"><option>Celsius</option><option>Fahrenheit</option><option>Kelvin</option></select></div>
+    </div>
+    <button class="btn" onclick="calcTemp()">Convert to All</button>
+    <div class="stat-row" id="temp-output"></div>`,
+
+  'img-compress': ()=>`
+    <div class="field"><label>Image தேர்வு செய்யவும்</label><input type="file" id="ic-file" accept="image/*" onchange="icLoad()"></div>
+    <div class="field"><label>Quality (0.1 – 1.0)</label><input type="number" id="ic-quality" value="0.6" min="0.1" max="1" step="0.1"></div>
+    <button class="btn" onclick="icCompress()">Compress</button>
+    <div id="ic-result"></div>`,
+  'img-resize': ()=>`
+    <div class="field"><label>Image தேர்வு செய்யவும்</label><input type="file" id="ir-file" accept="image/*" onchange="irLoad()"></div>
+    <div class="row">
+      <div class="field"><label>Width (px)</label><input type="number" id="ir-width" placeholder="800"></div>
+      <div class="field"><label>Height (px)</label><input type="number" id="ir-height" placeholder="600"></div>
+    </div>
+    <button class="btn" onclick="irResize()">Resize</button>
+    <div id="ir-result"></div>`,
+  'img-convert': ()=>`
+    <div class="field"><label>Image தேர்வு செய்யவும்</label><input type="file" id="icv-file" accept="image/*" onchange="icvLoad()"></div>
+    <div class="field"><label>Output Format</label><select id="icv-format"><option value="image/png">PNG</option><option value="image/jpeg">JPG</option><option value="image/webp">WEBP</option></select></div>
+    <button class="btn" onclick="icvConvert()">Convert</button>
+    <div id="icv-result"></div>`,
+  'img-crop': ()=>`
+    <div class="field"><label>Image தேர்வு செய்யவும்</label><input type="file" id="ib64-file" accept="image/*" onchange="ib64Load()"></div>
+    <div class="output-box" id="ib64-output" style="max-height:180px; overflow:auto;">—</div>
+    <button class="copy-btn" onclick="copyText('ib64-output', this)">Copy Base64</button>`,
+
+  'img-to-pdf': ()=>`
+    <div class="field"><label>Images தேர்வு செய்யவும் (multiple)</label><input type="file" id="itp-file" accept="image/*" multiple onchange="itpLoad()"></div>
+    <div class="file-list" id="itp-list"></div>
+    <button class="btn" onclick="itpConvert()">Convert to PDF</button>
+    <div id="itp-result" class="hint"></div>`,
+  'pdf-merge': ()=>`
+    <div class="field"><label>PDF Files தேர்வு செய்யவும் (order-படி merge ஆகும்)</label><input type="file" id="pm-file" accept="application/pdf" multiple onchange="pmLoad()"></div>
+    <div class="file-list" id="pm-list"></div>
+    <button class="btn" onclick="pmMerge()">Merge PDFs</button>
+    <div id="pm-result" class="hint"></div>`,
+  'pdf-split': ()=>`
+    <div class="field"><label>PDF File தேர்வு செய்யவும்</label><input type="file" id="ps-file" accept="application/pdf" onchange="psLoad()"></div>
+    <div class="hint" id="ps-info"></div>
+    <div class="row">
+      <div class="field"><label>Page From</label><input type="number" id="ps-from" value="1"></div>
+      <div class="field"><label>Page To</label><input type="number" id="ps-to" value="1"></div>
+    </div>
+    <button class="btn" onclick="psSplit()">Extract Pages</button>
+    <div id="ps-result" class="hint"></div>`,
+  'pdf-info': ()=>`
+    <div class="field"><label>PDF File தேர்வு செய்யவும்</label><input type="file" id="pi-file" accept="application/pdf" onchange="piLoad()"></div>
+    <div class="stat-row" id="pi-output"></div>`,
+};
+
+const TOOL_INIT = {
+  'currency-convert': ()=>{
+    const units = Object.keys(CUR_RATES);
+    const f = document.getElementById('cur-from'), t = document.getElementById('cur-to');
+    f.innerHTML = units.map(u=>`<option ${u==='USD'?'selected':''}>${u}</option>`).join('');
+    t.innerHTML = units.map(u=>`<option ${u==='INR'?'selected':''}>${u}</option>`).join('');
+  }
+};
+
+/* ---------------- TEXT TOOLS ---------------- */
+function wcUpdate(){
+  const v = document.getElementById('wc-input').value;
+  const words = v.trim()===''?0:v.trim().split(/\s+/).length;
+  const sent = (v.match(/[.!?]+/g)||[]).length;
+  const para = v.trim()===''?0:v.split(/\n+/).filter(p=>p.trim()!=='').length;
+  document.getElementById('wc-words').textContent = words;
+  document.getElementById('wc-chars').textContent = v.length;
+  document.getElementById('wc-sent').textContent = sent;
+  document.getElementById('wc-para').textContent = para;
+}
+function ccUpdate(){
+  const v = document.getElementById('cc-input').value;
+  document.getElementById('cc-chars').textContent = v.length;
+  document.getElementById('cc-nospace').textContent = v.replace(/\s/g,'').length;
+  document.getElementById('cc-bytes').textContent = new Blob([v]).size;
+}
+function applyCase(mode){
+  const v = document.getElementById('case-input').value;
+  let out = v;
+  if(mode==='upper') out = v.toUpperCase();
+  else if(mode==='lower') out = v.toLowerCase();
+  else if(mode==='title') out = v.replace(/\w\S*/g, t=>t[0].toUpperCase()+t.slice(1).toLowerCase());
+  else if(mode==='sentence') out = v.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c=>c.toUpperCase());
+  document.getElementById('case-output').textContent = out;
+}
+function genLorem(){
+  const words = "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat".split(' ');
+  const n = parseInt(document.getElementById('lorem-count').value)||1;
+  let out=[];
+  for(let i=0;i<n;i++){
+    let sentLen = 12+Math.floor(Math.random()*8);
+    let arr=[];
+    for(let j=0;j<sentLen;j++) arr.push(words[Math.floor(Math.random()*words.length)]);
+    let s = arr.join(' ');
+    out.push(s.charAt(0).toUpperCase()+s.slice(1)+'.');
+  }
+  document.getElementById('lorem-output').textContent = out.join('\n\n');
+}
+function urlUpdate(){}
+function urlOp(mode){
+  const v = document.getElementById('url-input').value;
+  try{
+    document.getElementById('url-output').textContent = mode==='encode' ? encodeURIComponent(v) : decodeURIComponent(v);
+  }catch(e){ document.getElementById('url-output').textContent = 'Error: invalid input'; }
+}
+function b64Op(mode){
+  const v = document.getElementById('b64-input').value;
+  try{
+    document.getElementById('b64-output').textContent = mode==='encode' ? btoa(unescape(encodeURIComponent(v))) : decodeURIComponent(escape(atob(v)));
+  }catch(e){ document.getElementById('b64-output').textContent = 'Error: invalid input'; }
+}
+function jsonOp(mode){
+  const v = document.getElementById('json-input').value;
+  try{
+    const obj = JSON.parse(v);
+    document.getElementById('json-output').textContent = mode==='format' ? JSON.stringify(obj,null,2) : JSON.stringify(obj);
+  }catch(e){ document.getElementById('json-output').textContent = 'Invalid JSON: '+e.message; }
+}
+function genUUID(){
+  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c=>{
+    const r = Math.random()*16|0; const v = c==='x'?r:(r&0x3|0x8); return v.toString(16);
+  });
+  document.getElementById('uuid-output').textContent = uuid;
+}
+function genPassword(){
+  const len = parseInt(document.getElementById('pw-len').value)||14;
+  let chars = 'abcdefghijklmnopqrstuvwxyz';
+  if(document.getElementById('pw-upper').checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if(document.getElementById('pw-num').checked) chars += '0123456789';
+  if(document.getElementById('pw-sym').checked) chars += '!@#$%^&*()_+-=[]{}';
+  let out='';
+  for(let i=0;i<len;i++) out += chars[Math.floor(Math.random()*chars.length)];
+  document.getElementById('pw-output').textContent = out;
+}
